@@ -7,11 +7,12 @@ import org.iesalandalus.programacion.reservashotel.modelo.dominio.TipoHabitacion
 import org.iesalandalus.programacion.reservashotel.modelo.negocio.Habitaciones;
 import org.iesalandalus.programacion.reservashotel.modelo.negocio.Huespedes;
 import org.iesalandalus.programacion.reservashotel.modelo.negocio.Reservas;
-import org.iesalandalus.programacion.reservashotel.vista.Consola;
+//import org.iesalandalus.programacion.reservashotel.vista.Consola;
 
 import javax.naming.OperationNotSupportedException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Modelo {
 
@@ -19,7 +20,6 @@ public class Modelo {
     public static Habitaciones habitaciones;
     public static Reservas reservas;
     public static Huespedes huespedes;
-    public static final int CAPACIDAD=5;
 
 
     public Modelo(){
@@ -28,9 +28,9 @@ public class Modelo {
 
     public static void comenzar(){
         // Aquí hemos copiado y pegado lo que teníamos en el main del mainApp anteriormente.
-        habitaciones = new Habitaciones(CAPACIDAD);
-        huespedes = new Huespedes(CAPACIDAD);
-        reservas = new Reservas(CAPACIDAD);
+        habitaciones = new Habitaciones();
+        huespedes = new Huespedes();
+        reservas = new Reservas();
     }
 
     public void terminar(){
@@ -51,7 +51,7 @@ public class Modelo {
         huespedes.borrar(huesped);
     }
 
-    public static Huesped[] getHuespedes(){
+    public static ArrayList<Huesped> getHuespedes(){
         return huespedes.get();
         /*Huesped[] huespedesADevolver = new Huesped[huespedes.get().length];
 
@@ -60,6 +60,7 @@ public class Modelo {
             huespedesADevolver[i] = new Huesped(huespedesADevolver[i].getNombre(),huespedesADevolver[i].getDni(), huespedesADevolver[i].getCorreo(), huespedesADevolver[i].getTelefono(), huespedesADevolver[i].getFechaNacimiento());
         }
         return huespedesADevolver;*/
+
     }
 
     public static void insertar(Habitacion habitacion)throws OperationNotSupportedException{
@@ -74,7 +75,7 @@ public class Modelo {
         habitaciones.borrar(habitacion);
     }
 
-    public static Habitacion[] getHabitaciones(){
+    public static ArrayList<Habitacion> getHabitaciones(){
         return habitaciones.get();
         /*Habitacion[] habitacionesADevolver = new Habitacion[habitaciones.get().length];
 
@@ -85,7 +86,7 @@ public class Modelo {
         return habitacionesADevolver;*/
     }
 
-    public static Habitacion[] getHabitaciones(TipoHabitacion tipoHabitacion){
+    public static ArrayList<Habitacion> getHabitaciones(TipoHabitacion tipoHabitacion){
         return habitaciones.get(tipoHabitacion);
         /*Habitacion[] habitacionesADevolver = new Habitacion[habitaciones.get(tipoHabitacion).length];
 
@@ -110,7 +111,7 @@ public class Modelo {
         return reservas.buscar(reserva);
     }
 
-    public static Reserva[] getReservas(){
+    public static ArrayList<Reserva> getReservas(){
         return reservas.get();
         // He hecho esto porque en el enunciado pone que que devolvemos una lista de objetos nuevos de los geters, y no una copia.
         // LUEGO pregunte a mis compañeros y me dijeron que solo hacia falta el reservas.get();
@@ -122,7 +123,7 @@ public class Modelo {
         return reservasADevolver;*/
     }
 
-    public static Reserva[] getReserva(Huesped huesped){
+    public static ArrayList<Reserva> getReserva(Huesped huesped){
         return reservas.getReservas(huesped);
         /*Reserva[] reservasADevolver = new Reserva[reservas.getReservas(huesped).length];
 
@@ -135,7 +136,7 @@ public class Modelo {
         return reservasADevolver;*/
     }
 
-    public static Reserva[] getReserva(TipoHabitacion tipoHabitacion){
+    public static ArrayList<Reserva> getReserva(TipoHabitacion tipoHabitacion){
         return reservas.getReservas(tipoHabitacion);
         /*Reserva[] reservasADevolver = new Reserva[reservas.getReservas(tipoHabitacion).length];
 
@@ -148,7 +149,7 @@ public class Modelo {
         return reservasADevolver;*/
     }
 
-    public static Reserva[] getReserva(Habitacion habitacion){
+    public static ArrayList<Reserva> getReserva(Habitacion habitacion){
         /*if (habitacion == null)
             throw new NullPointerException("ERROR: No se pueden buscar reservas de un tipo de habitación nula.");
         //return Arrays.stream(copiaProfundaReservas()).filter(reserva -> reserva.getHabitacion().getTipoHabitacion() == tipoHabitacion).toArray(Reserva[]::new);
@@ -171,6 +172,7 @@ public class Modelo {
             }
 
         }return reservasHabitacion;*/
+
 
         // No había caído en que tenemos getReservasFuturas para poder pasar como parámetro habitacion, y habia creado mi propio getReservas de habitacion...
         return reservas.getReservasFuturas(habitacion);
