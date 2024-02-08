@@ -12,9 +12,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import static org.iesalandalus.programacion.reservashotel.MainApp.*;
+//import static org.iesalandalus.programacion.reservashotel.MainApp.*;
 import static org.iesalandalus.programacion.reservashotel.modelo.Modelo.*;
-import static org.iesalandalus.programacion.reservashotel.modelo.Modelo.*;
+//import static org.iesalandalus.programacion.reservashotel.modelo.Modelo.*;
 
 
 public class Consola {
@@ -34,7 +34,7 @@ public class Consola {
         }
 
 
-        /*System.out.println(Opcion.SALIR);
+        System.out.println(Opcion.SALIR);
         System.out.println(Opcion.INSERTAR_HUESPED);
         System.out.println(Opcion.BUSCAR_HUESPED);
         System.out.println(Opcion.BORRAR_HUESPED);
@@ -46,8 +46,8 @@ public class Consola {
         System.out.println(Opcion.INSERTAR_RESERVA);
         System.out.println(Opcion.ANULAR_RESERVA);
         System.out.println(Opcion.MOSTRAR_RESERVAS);
-        System.out.println(Opcion.CONSULTAR_DISPONIBILIDAD);*/
-    }
+        System.out.println(Opcion.CONSULTAR_DISPONIBILIDAD);
+   }
 
 
     public static Opcion elegirOpcion(){
@@ -158,8 +158,8 @@ public class Consola {
         if (fechaFinal.isLeapYear()){
             return fechaFinal;
         }
-        return fechaFinal;*/
-        // Este método lo he obtenido a través de chatGPT porque tengo un problema que no supe solucionar con el hecho de que es un año bisiesto y me da un error cuando crea una reserva.
+        return fechaFinal;
+        // Este método lo he obtenido a través de chatGPT porque tengo un problema que no supe solucionar con el hecho de que es un año bisiesto y me da un error cuando crea una reserva.*/
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate fecha = null;
 
@@ -223,7 +223,8 @@ public class Consola {
             System.out.println(e.getMessage());
             return null;
         }
-        /*do {
+        /*
+        do {
             System.out.println("¿Desea indicar el tipo de habitación?");
             System.out.println("1.- Sí");
             System.out.println("2.- No");
@@ -243,9 +244,7 @@ public class Consola {
             }catch (NullPointerException | IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
-        }
-
-*/
+        }*/
 
     }
 
