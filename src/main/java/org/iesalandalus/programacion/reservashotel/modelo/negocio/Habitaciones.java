@@ -5,15 +5,32 @@ import org.iesalandalus.programacion.reservashotel.modelo.dominio.Habitacion;
 import org.iesalandalus.programacion.reservashotel.modelo.dominio.TipoHabitacion;
 
 import javax.naming.OperationNotSupportedException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 
 public class Habitaciones {
 
+    /*
+    Los atributos pertenecientes a el array tampoco harán falta.
     private Habitacion coleccionHabitaciones[];
     private int capacidad;
+
+    */
     private int tamano;
 
+    // Usamos ArrayList porque nos lo pide en el enunciado
+
+    private List<Habitacion> coleccionHabitaciones= new ArrayList<Habitacion>();
+
+    public Habitaciones(){
+        tamano=getTamano();
+    }
+
+    /*
+    Esto pertenecía a los Array normales, ya no harán falta con ArrayList.
     public Habitaciones (int capacidad){
         if (capacidad<=0)
             throw new IllegalArgumentException("ERROR: La capacidad debe ser mayor que cero.");
@@ -22,70 +39,38 @@ public class Habitaciones {
         this.coleccionHabitaciones = new Habitacion[getCapacidad()];
         this.tamano=0;
 
-    }
+    }*/
 
-    public Habitacion[] get(){
+    public List<Habitacion> get(){
         return copiaProfundaHabitaciones();
     }
 
-    private Habitacion[] copiaProfundaHabitaciones(){
-        // Esto lo he escrito con el proposito de que me pase los test, mirando en la información que pide que pase los test he creado objetos del mismo, pero no está bien así.
-    /* coleccionHabitaciones[0] = new Habitacion(1,0,50, TipoHabitacion.SIMPLE);
-        coleccionHabitaciones[1] = new Habitacion(2,10,50,TipoHabitacion.DOBLE);
-        if (getCapacidad()>=3)
-            coleccionHabitaciones[2] = new Habitacion(3,10,50,TipoHabitacion.SUITE);
-
-        return Arrays.copyOf(coleccionHabitaciones, tamano);*/
-
-
-        // Realicé esta modificación de ultima hora ya que de la otra manera me aceptaba los test pero era para salir del paso, pero realmente no funcionan bien.
-        /*Habitacion copiaHabitaciones [] = new Habitacion[capacidad];
-        for (int i=0; !tamanoSuperado(i);i++){
-            copiaHabitaciones[i] = new Habitacion((coleccionHabitaciones[i]));
-        }
-
-
-        return copiaHabitaciones;*/
-
-        int j=0;
+    // Ahora ya no se usa private Habitacion[] por que ya no queremos devolver un array, sino un Arraylist.
+    private List<Habitacion> copiaProfundaHabitaciones(){
+    // Este era el método implementado en Array normal
+        /*int j=0;
         Habitacion[] copiaHabitaciones = new Habitacion[capacidad];
         for (int i = 0; i < capacidad; i++) {
             if (coleccionHabitaciones[i] != null) {
                 copiaHabitaciones[j++] = new Habitacion(coleccionHabitaciones[i]);
             }
 
-        }return Arrays.copyOf(copiaHabitaciones, j);
-
+        }return Arrays.copyOf(copiaHabitaciones, j);*/
+        List<Habitacion> copiaHabitaciones= new ArrayList<Habitacion>();
+         //copiaHabitaciones.addAll(coleccionHabitaciones);
+        for (Habitacion habitacion: coleccionHabitaciones){
+            copiaHabitaciones.add(habitacion);
+        }
+        return copiaHabitaciones;
     }
 
-    public Habitacion[] get(TipoHabitacion tipoHabitacion){
-        /*int contador=0;
-
-        for (Habitacion habitacion: get()) {
-
-            if (habitacion.getTipoHabitacion().equals(tipoHabitacion)) {
-                contador++;
-            }
-
-            Habitacion[] habitacionPorTipos = new Habitacion[contador];
-            contador = 0;
-
-            for (Habitacion habitaciones: get()){
-                if (habitacion.getTipoHabitacion().equals(tipoHabitacion)){
-                    habitacionPorTipos[contador++]=habitaciones;
-                }
-
-            }
-
-        }
-        return habitacionPorTipos;*/
-
+    public List<Habitacion> get(TipoHabitacion tipoHabitacion){
 
         if (tipoHabitacion == null)
             throw new NullPointerException("ERROR: No se pueden buscar reservas de un huesped nulo // Es posible que se haya equivocado al escribir el DNI.");
         //return Arrays.stream(copiaProfundaReservas()).filter(reserva -> reserva.getHuesped().equals(huesped)).toArray(Reserva[]::new);
         // lo he copiado de otro método y lo he remplazado a tipoHabitacion.
-        int contador = 0;
+        /*int contador = 0;
         for (Habitacion contadorHabitacion : get()) {
             if (contadorHabitacion.getTipoHabitacion().equals(tipoHabitacion)) {
                 contador++;
@@ -103,36 +88,52 @@ public class Habitaciones {
                 }
             }
 
-        }return habitacionesTipo;
+        }return habitacionesTipo;*/
 
+        ArrayList<Habitacion> copiaHabitaciones= new ArrayList<>();
+        for (Habitacion habitacion: get()){
+            if (habitacion.getTipoHabitacion().equals(tipoHabitacion)){
+                copiaHabitaciones.add(habitacion);
+            }
+        }
 
+        return copiaHabitaciones;
     }
-
+    /*
+    Ya no hará falta los métodos get de los atributos para ArrayList.
     public int getCapacidad() {
         return capacidad;
     }
+    */
+
 
     public int getTamano() {
-        return tamano;
+        return coleccionHabitaciones.size();
     }
+
+
 
     public void insertar (Habitacion habitacion) throws OperationNotSupportedException{
         if (habitacion == null)
             throw new NullPointerException("ERROR: No se puede insertar una habitación nula.");
-        int indice = buscarIndice(habitacion);
-        if (capacidadSuperada(indice))
-            throw new OperationNotSupportedException("ERROR: No se aceptan más habitaciones.");
-        if (tamanoSuperado(indice))
-            throw new OperationNotSupportedException("ERROR: Ya existe una habitación con ese identificador.");
-        /*for (int i=0; i< tamano; i++){
-            if (habitacion.getIdentificador().equals(coleccionHabitaciones[i].getIdentificador()))
+        /*if (capacidadSuperada(indice)) No hace falta esto porque ArrayList permite añadir sin restricción.
+            throw new OperationNotSupportedException("ERROR: No se aceptan más habitaciones.");*/
+        //List<Habitacion> insertarHabitaciones= coleccionHabitaciones;
+        //Iterator<Habitacion> iteradorHabitacion= insertarHabitaciones.listIterator();
+        /*while (iteradorHabitacion.hasNext()){
+            if (iteradorHabitacion.next().getIdentificador().equals(habitacion.getIdentificador())){
                 throw new OperationNotSupportedException("ERROR: Ya existe una habitación con ese identificador.");
+            }
         }*/
+        // Esta es otra manera de que salte la excepción.
+        if (coleccionHabitaciones.contains(habitacion)){
+            throw new OperationNotSupportedException("ERROR: Ya existe una habitación con ese identificador.");
+        }
 
-        coleccionHabitaciones[tamano]=habitacion;
-        tamano++;
+        coleccionHabitaciones.add(habitacion);
     }
-
+/*
+    Este método ya no es necesario con ArrayList.
     private int buscarIndice (Habitacion habitacion){
         if (habitacion == null)
             throw new NullPointerException("ERROR: la habitación indicada es nula.");
@@ -144,6 +145,9 @@ public class Habitaciones {
         return -1;
     }
 
+ */
+/*
+Estos métodos se usaban para controlar el array.
     private boolean tamanoSuperado (int indice){
         if (indice>-1)
             return true;
@@ -156,24 +160,29 @@ public class Habitaciones {
             return true;
         else return false;
     }
+    */
 
     public Habitacion buscar (Habitacion habitacion){
-        int indice = buscarIndice(habitacion);
-        if (indice != -1)
-            return new Habitacion(coleccionHabitaciones[indice]);
+        if (habitacion == null)
+            throw new NullPointerException("ERROR: No se puede buscar una habitación nula.");
+        if (get().contains(habitacion)){
+            return get().get(get().indexOf(habitacion));
+        }
         else return null;
     }
 
     public void borrar (Habitacion habitacion) throws OperationNotSupportedException{
         if (habitacion == null)
             throw new NullPointerException("ERROR: No se puede borrar una habitación nula.");
-        if (buscarIndice(habitacion)<0)
+        if (!get().contains(habitacion))
             throw new OperationNotSupportedException("ERROR: No existe ninguna habitación como la indicada.");
-        int indice = buscarIndice(habitacion);
-        desplazarUnaPosicionHaciaIzquierda(indice);
-        tamano--;
-    }
+        else{
 
+            coleccionHabitaciones.remove(habitacion);
+        }
+    }
+/*
+    Ya no hace falta usar este método con ArrayList.
     private void desplazarUnaPosicionHaciaIzquierda(int indice){
         for (int i = indice; i<tamano-1;i++){
             coleccionHabitaciones[i] = coleccionHabitaciones[i+1];
@@ -181,6 +190,7 @@ public class Habitaciones {
         coleccionHabitaciones[tamano-1] = null;
 
     }
+    */
 
 
 
