@@ -41,12 +41,12 @@ public class Habitaciones {
 
     }*/
 
-    public List<Habitacion> get(){
+    public ArrayList<Habitacion> get(){
         return copiaProfundaHabitaciones();
     }
 
     // Ahora ya no se usa private Habitacion[] por que ya no queremos devolver un array, sino un Arraylist.
-    private List<Habitacion> copiaProfundaHabitaciones(){
+    private ArrayList<Habitacion> copiaProfundaHabitaciones(){
     // Este era el método implementado en Array normal
         /*int j=0;
         Habitacion[] copiaHabitaciones = new Habitacion[capacidad];
@@ -56,7 +56,7 @@ public class Habitaciones {
             }
 
         }return Arrays.copyOf(copiaHabitaciones, j);*/
-        List<Habitacion> copiaHabitaciones= new ArrayList<Habitacion>();
+        ArrayList<Habitacion> copiaHabitaciones= new ArrayList<Habitacion>();
          //copiaHabitaciones.addAll(coleccionHabitaciones);
         for (Habitacion habitacion: coleccionHabitaciones){
             copiaHabitaciones.add(habitacion);
@@ -64,7 +64,7 @@ public class Habitaciones {
         return copiaHabitaciones;
     }
 
-    public List<Habitacion> get(TipoHabitacion tipoHabitacion){
+    public ArrayList<Habitacion> get(TipoHabitacion tipoHabitacion){
 
         if (tipoHabitacion == null)
             throw new NullPointerException("ERROR: No se pueden buscar reservas de un huesped nulo // Es posible que se haya equivocado al escribir el DNI.");
