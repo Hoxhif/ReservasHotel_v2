@@ -8,10 +8,11 @@ import org.iesalandalus.programacion.reservashotel.modelo.dominio.TipoHabitacion
 import org.iesalandalus.programacion.reservashotel.modelo.negocio.Habitaciones;
 import org.iesalandalus.programacion.reservashotel.modelo.negocio.Huespedes;
 import org.iesalandalus.programacion.reservashotel.modelo.negocio.Reservas;
-import org.iesalandalus.programacion.reservashotel.vista.Vista;
+//import org.iesalandalus.programacion.reservashotel.vista.Vista;
 
 import javax.naming.OperationNotSupportedException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Controlador {
 
@@ -52,7 +53,7 @@ public class Controlador {
         modelo.borrar(huesped);
     }
 
-    public Huesped[] getHuespedes(){
+    public ArrayList<Huesped> getHuespedes(){
         return modelo.getHuespedes();
     }
 
@@ -68,11 +69,11 @@ public class Controlador {
         modelo.borrar(habitacion);
     }
 
-    public Habitacion[] getHabitaciones(){
+    public ArrayList<Habitacion> getHabitaciones(){
         return modelo.getHabitaciones();
     }
 
-    public Habitacion[] getHabitaciones(TipoHabitacion tipoHabitacion){
+    public ArrayList<Habitacion> getHabitaciones(TipoHabitacion tipoHabitacion){
         return modelo.getHabitaciones(tipoHabitacion);
     }
 
@@ -88,19 +89,19 @@ public class Controlador {
         return modelo.buscar(reserva);
     }
 
-    public Reserva[] getReservas(){
+    public ArrayList<Reserva> getReservas(){
         return modelo.getReservas();
     }
 
-    public Reserva[] getReserva(Huesped huesped){
+    public ArrayList<Reserva> getReserva(Huesped huesped){
         return modelo.getReserva(huesped);
     }
 
-    public Reserva[] getReserva(TipoHabitacion tipoHabitacion){
+    public ArrayList<Reserva> getReserva(TipoHabitacion tipoHabitacion){
         return modelo.getReserva(tipoHabitacion);
     }
 
-    public Reserva[] getReserva(Habitacion habitacion){
+    public ArrayList<Reserva> getReserva(Habitacion habitacion){
         return modelo.getReserva(habitacion);
     }
 
