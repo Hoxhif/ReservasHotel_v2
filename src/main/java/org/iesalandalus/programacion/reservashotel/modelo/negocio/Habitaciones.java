@@ -108,7 +108,7 @@ public class Habitaciones {
 
 
     public int getTamano() {
-        return coleccionHabitaciones.size();
+        return get().size();
     }
 
 
