@@ -19,14 +19,14 @@ public class Habitaciones {
     private int capacidad;
 
     */
-    private int tamano;
+
 
     // Usamos ArrayList porque nos lo pide en el enunciado
 
     private List<Habitacion> coleccionHabitaciones= new ArrayList<Habitacion>();
 
     public Habitaciones(){
-        tamano=getTamano();
+
     }
 
     /*
