@@ -58,7 +58,6 @@ public class Huespedes {
     public Huesped buscar (Huesped huesped){
         if (huesped == null)
             throw new NullPointerException("ERROR: No se puede buscar un huésped nulo.");
-
         if (get().contains(huesped))
             return huesped;
         else return null;

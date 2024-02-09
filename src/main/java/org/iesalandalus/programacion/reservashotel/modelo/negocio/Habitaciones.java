@@ -107,7 +107,9 @@ public class Habitaciones {
         Iterator<Habitacion> iteradorHabitacion= coleccionHabitaciones.iterator();
 
         while(iteradorHabitacion.hasNext()){
-            copiaHabitaciones.add(iteradorHabitacion.next());
+            Habitacion comprobarHabitacion= iteradorHabitacion.next();
+            if (comprobarHabitacion.getTipoHabitacion().equals(tipoHabitacion))
+                copiaHabitaciones.add(comprobarHabitacion);
         }
 
     // Usamos reversed como en el método consultarDisponibilidad para que sea del número más bajo al más alto.
