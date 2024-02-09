@@ -16,7 +16,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
-import static jdk.internal.org.jline.reader.impl.LineReaderImpl.CompletionType.List;
 
 public class Vista {
 
