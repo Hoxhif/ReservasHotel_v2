@@ -56,9 +56,12 @@ public class Habitaciones {
         }return Arrays.copyOf(copiaHabitaciones, j);*/
         ArrayList<Habitacion> copiaHabitaciones= new ArrayList<Habitacion>();
          //copiaHabitaciones.addAll(coleccionHabitaciones);
-        for (Habitacion habitacion: coleccionHabitaciones){
+        /*for (Habitacion habitacion: coleccionHabitaciones){
             copiaHabitaciones.add(habitacion);
-
+        }*/
+        Iterator<Habitacion> habitacionIterator= coleccionHabitaciones.iterator();
+        while (habitacionIterator.hasNext()){
+            copiaHabitaciones.add(habitacionIterator.next());
         }
         // Había usado reversed al principio porque pensaba que iría de mas a menos, pero parece ser que no, que va de menos a mas por defecto.
         Collections.sort(copiaHabitaciones, Comparator.comparing(Habitacion::getIdentificador));
