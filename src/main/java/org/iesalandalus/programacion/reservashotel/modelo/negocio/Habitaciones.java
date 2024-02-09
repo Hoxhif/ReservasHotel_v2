@@ -59,6 +59,10 @@ public class Habitaciones {
         /*for (Habitacion habitacion: coleccionHabitaciones){
             copiaHabitaciones.add(habitacion);
         }*/
+
+        //Esta hubiera sido otra manera de hacerlo.
+        //copiaHabitaciones.addAll(coleccionHabitaciones);
+
         Iterator<Habitacion> habitacionIterator= coleccionHabitaciones.iterator();
         while (habitacionIterator.hasNext()){
             copiaHabitaciones.add(habitacionIterator.next());
