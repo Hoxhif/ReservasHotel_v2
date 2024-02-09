@@ -92,10 +92,15 @@ public class Habitaciones {
         }return habitacionesTipo;*/
 
         ArrayList<Habitacion> copiaHabitaciones= new ArrayList<>();
-        for (Habitacion habitacion: get()){
+        /*for (Habitacion habitacion: get()){
             if (habitacion.getTipoHabitacion().equals(tipoHabitacion)){
                 copiaHabitaciones.add(habitacion);
             }
+        }*/
+        Iterator<Habitacion> iteradorHabitacion= coleccionHabitaciones.iterator();
+
+        while(iteradorHabitacion.hasNext()){
+            copiaHabitaciones.add(iteradorHabitacion.next());
         }
 
     // Usamos reversed como en el método consultarDisponibilidad para que sea del número más bajo al más alto.

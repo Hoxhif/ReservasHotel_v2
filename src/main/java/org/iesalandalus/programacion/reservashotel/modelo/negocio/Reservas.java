@@ -27,8 +27,14 @@ public class Reservas {
     private ArrayList<Reserva> copiaProfundaReservas(){
 
         ArrayList<Reserva> copiaReservas= new ArrayList<Reserva>();
-        for (Reserva reserva: coleccionReservas){
+        /*for (Reserva reserva: coleccionReservas){
             copiaReservas.add(reserva);
+        }*/
+
+        Iterator<Reserva> iteradorReservas= coleccionReservas.iterator();
+
+        while(iteradorReservas.hasNext()){
+            copiaReservas.add(iteradorReservas.next());
         }
 
         /*Collections.sort(copiaReservas, new Comparator<Reserva>() {

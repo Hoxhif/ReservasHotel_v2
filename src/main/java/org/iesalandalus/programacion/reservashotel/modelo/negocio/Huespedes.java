@@ -1,14 +1,12 @@
 package org.iesalandalus.programacion.reservashotel.modelo.negocio;
 
 import org.iesalandalus.programacion.reservashotel.modelo.dominio.Huesped;
+import org.iesalandalus.programacion.reservashotel.modelo.dominio.Reserva;
 
 import javax.naming.OperationNotSupportedException;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 
 public class Huespedes {
 
@@ -26,8 +24,13 @@ public class Huespedes {
     private ArrayList<Huesped> copiaProfundaHuespedes() {
 
         ArrayList<Huesped> copiaHuespedes= new ArrayList<Huesped>();
-        for (Huesped huesped: coleccionHuespedes){
+        /*for (Huesped huesped: coleccionHuespedes){
             copiaHuespedes.add(huesped);
+        }*/
+        Iterator<Huesped> iteradorHuesped= coleccionHuespedes.iterator();
+
+        while(iteradorHuesped.hasNext()){
+            copiaHuespedes.add(iteradorHuesped.next());
         }
 
         // el método sort nos ordena por defecto alfabéticamente por los nombres usando getNombre.
