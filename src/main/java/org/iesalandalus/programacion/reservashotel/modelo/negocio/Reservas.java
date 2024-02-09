@@ -10,8 +10,7 @@ import org.iesalandalus.programacion.reservashotel.modelo.dominio.TipoHabitacion
 import javax.naming.OperationNotSupportedException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class Reservas {
 
@@ -31,6 +30,30 @@ public class Reservas {
         for (Reserva reserva: coleccionReservas){
             copiaReservas.add(reserva);
         }
+
+        /*Collections.sort(copiaReservas, new Comparator<Reserva>() {
+            @Override
+            public int compare(Reserva o1, Reserva o2) {
+                int resultado = o2.getFechaInicioReserva().compareTo(o1.getFechaInicioReserva());
+                if (resultado!=0)
+                    return resultado;
+                else return String.compare(o1.getHabitacion().getIdentificador(),o2.getHabitacion().getIdentificador());
+            }
+        });*/
+
+        // He mirado como hacerlo por interner, en este enlace da una solución oara ordenar por fecha de inicio y luego por fecha reserva.https://stackoverflow.com/questions/41402963/sort-an-arraylist-with-multiple-conditions
+
+        Comparator<Reserva> comparador= new Comparator<Reserva>() {
+            @Override
+            public int compare(Reserva o1, Reserva o2) {
+                if (!o1.getFechaInicioReserva().equals(o2.getFechaInicioReserva()))
+                    return o1.getFechaInicioReserva().compareTo(o2.getFechaInicioReserva());
+                else return o1.getHabitacion().getIdentificador().compareTo(o2.getHabitacion().getIdentificador());
+            }
+
+        };
+        Collections.sort(copiaReservas,comparador);
+
      return copiaReservas;
     }
 
@@ -39,7 +62,6 @@ public class Reservas {
         return get().size();
     }
 
-
     public void insertar (Reserva reserva) throws OperationNotSupportedException{
         if (reserva == null)
             throw new NullPointerException("ERROR: No se puede insertar una reserva nula.");
@@ -47,7 +69,6 @@ public class Reservas {
                 throw new OperationNotSupportedException("ERROR: Ya existe una reserva igual.");
         coleccionReservas.add(reserva);
     }
-
 
 
     public Reserva buscar (Reserva reserva){
