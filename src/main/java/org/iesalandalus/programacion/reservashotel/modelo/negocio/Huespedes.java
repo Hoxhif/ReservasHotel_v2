@@ -7,6 +7,8 @@ import javax.naming.OperationNotSupportedException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Huespedes {
 
@@ -27,6 +29,10 @@ public class Huespedes {
         for (Huesped huesped: coleccionHuespedes){
             copiaHuespedes.add(huesped);
         }
+
+        // el método sort nos ordena por defecto alfabéticamente por los nombres usando getNombre.
+
+        Collections.sort(copiaHuespedes, Comparator.comparing(Huesped::getNombre));
 
         return copiaHuespedes;
     }

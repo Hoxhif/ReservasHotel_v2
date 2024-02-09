@@ -2,13 +2,11 @@ package org.iesalandalus.programacion.reservashotel.modelo.negocio;
 
 
 import org.iesalandalus.programacion.reservashotel.modelo.dominio.Habitacion;
+import org.iesalandalus.programacion.reservashotel.modelo.dominio.Huesped;
 import org.iesalandalus.programacion.reservashotel.modelo.dominio.TipoHabitacion;
 
 import javax.naming.OperationNotSupportedException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 
 public class Habitaciones {
@@ -60,7 +58,10 @@ public class Habitaciones {
          //copiaHabitaciones.addAll(coleccionHabitaciones);
         for (Habitacion habitacion: coleccionHabitaciones){
             copiaHabitaciones.add(habitacion);
+
         }
+        // Había usado reversed al principio porque pensaba que iría de mas a menos, pero parece ser que no, que va de menos a mas por defecto.
+        Collections.sort(copiaHabitaciones, Comparator.comparing(Habitacion::getIdentificador));
         return copiaHabitaciones;
     }
 
@@ -96,6 +97,9 @@ public class Habitaciones {
                 copiaHabitaciones.add(habitacion);
             }
         }
+
+    // Usamos reversed como en el método consultarDisponibilidad para que sea del número más bajo al más alto.
+        Collections.sort(copiaHabitaciones, Comparator.comparing(Habitacion::getIdentificador));
 
         return copiaHabitaciones;
     }
