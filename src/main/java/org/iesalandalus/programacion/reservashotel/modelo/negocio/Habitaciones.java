@@ -118,7 +118,7 @@ public class Habitaciones {
     }
     */
 
-
+// esto directamente deuvleve el tamaño.
     public int getTamano() {
         return get().size();
     }
@@ -138,7 +138,7 @@ public class Habitaciones {
             }
         }*/
         // Esta es otra manera de que salte la excepción.
-        if (coleccionHabitaciones.contains(habitacion)){
+        if (get().contains(habitacion)){
             throw new OperationNotSupportedException("ERROR: Ya existe una habitación con ese identificador.");
         }
 
@@ -178,9 +178,15 @@ Estos métodos se usaban para controlar el array.
         if (habitacion == null)
             throw new NullPointerException("ERROR: No se puede buscar una habitación nula.");
         if (get().contains(habitacion)){
-            return get().get(get().indexOf(habitacion));
+            //return get().get(get().indexOf(habitacion));
+            // Aquí en vez de lo que tenía hecho he usado el Iterator.
+            Iterator<Habitacion> iteradorHabitacion= get().iterator();
+            while (iteradorHabitacion.hasNext()){
+                if (habitacion.equals(iteradorHabitacion.next()))
+                    return habitacion;
+            }
         }
-        else return null;
+        return null;
     }
 
     public void borrar (Habitacion habitacion) throws OperationNotSupportedException{
@@ -189,7 +195,6 @@ Estos métodos se usaban para controlar el array.
         if (!get().contains(habitacion))
             throw new OperationNotSupportedException("ERROR: No existe ninguna habitación como la indicada.");
         else{
-
             coleccionHabitaciones.remove(habitacion);
         }
     }
