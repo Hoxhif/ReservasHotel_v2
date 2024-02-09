@@ -34,7 +34,7 @@ public class Consola {
         }
 
 
-        System.out.println(Opcion.SALIR);
+       /* System.out.println(Opcion.SALIR);
         System.out.println(Opcion.INSERTAR_HUESPED);
         System.out.println(Opcion.BUSCAR_HUESPED);
         System.out.println(Opcion.BORRAR_HUESPED);
@@ -46,7 +46,7 @@ public class Consola {
         System.out.println(Opcion.INSERTAR_RESERVA);
         System.out.println(Opcion.ANULAR_RESERVA);
         System.out.println(Opcion.MOSTRAR_RESERVAS);
-        System.out.println(Opcion.CONSULTAR_DISPONIBILIDAD);
+        System.out.println(Opcion.CONSULTAR_DISPONIBILIDAD);*/
    }
 
 
