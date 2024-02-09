@@ -21,7 +21,7 @@ public class Habitaciones {
 
     // Usamos ArrayList porque nos lo pide en el enunciado
 
-    private List<Habitacion> coleccionHabitaciones= new ArrayList<Habitacion>();
+    private ArrayList<Habitacion> coleccionHabitaciones= new ArrayList<Habitacion>();
 
     public Habitaciones(){
 
