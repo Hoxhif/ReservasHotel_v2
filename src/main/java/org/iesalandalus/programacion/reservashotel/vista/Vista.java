@@ -198,7 +198,9 @@ public class Vista {
             System.out.println("No hay habitaciones a mostrar. ");
         }else{
             System.out.println("Listado de Habitaciones: ");
-            Iterator<Habitacion> iteradorMostrarHabitaciones= controlador.getHabitaciones().iterator();
+            ArrayList<Habitacion> mostrarHabitaciones= controlador.getHabitaciones();
+            Collections.sort(mostrarHabitaciones, Comparator.comparing(Habitacion::getIdentificador));
+            Iterator<Habitacion> iteradorMostrarHabitaciones= mostrarHabitaciones.iterator();
             while (iteradorMostrarHabitaciones.hasNext()){
                 System.out.println(iteradorMostrarHabitaciones.next().toString());
             }
@@ -256,6 +258,7 @@ public class Vista {
         try{
             if (huesped != null) {
                 int contador = 1;
+                // La comparación para las reservas esta hecho en el método copiaProfunda de reservas.
                 Iterator<Reserva> iteradorListarReservasHuesped= controlador.getReserva(huesped).iterator();
                 while (iteradorListarReservasHuesped.hasNext()){
                     System.out.println(contador+": "+iteradorListarReservasHuesped.next());

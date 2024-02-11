@@ -36,7 +36,7 @@ public class Huespedes {
         }
 
         // el método sort nos ordena por defecto alfabéticamente por los nombres usando getNombre.
-
+        //Collections.sort(copiaHuespedes, Comparator.comparing(Huesped::getNombre));
 
         return copiaHuespedes;
     }

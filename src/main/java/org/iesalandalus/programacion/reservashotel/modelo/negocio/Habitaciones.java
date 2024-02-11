@@ -114,7 +114,6 @@ public class Habitaciones {
         }
 
     // Usamos reversed como en el método consultarDisponibilidad para que sea del número más bajo al más alto.
-        Collections.sort(copiaHabitaciones, Comparator.comparing(Habitacion::getIdentificador));
 
         return copiaHabitaciones;
     }
