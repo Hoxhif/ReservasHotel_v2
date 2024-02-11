@@ -11,10 +11,7 @@ import org.iesalandalus.programacion.utilidades.Entrada;
 import javax.naming.OperationNotSupportedException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 
 
 public class Vista {
@@ -146,9 +143,13 @@ public class Vista {
             System.out.println("No hay huespedes a mostrar. ");
         }else{
             System.out.println("Listado de huespedes: ");
-            for (Huesped huesped: controlador.getHuespedes()){
-                System.out.println(huesped.toString());
+            Iterator<Huesped> iteradorMostrarHuesped= controlador.getHuespedes().iterator();
+            while (iteradorMostrarHuesped.hasNext()){
+                System.out.println(iteradorMostrarHuesped.next().toString());
             }
+            /*for (Huesped huesped: controlador.getHuespedes()){
+                System.out.println(huesped.toString());
+            }*/
         }
 
     }
@@ -195,9 +196,13 @@ public class Vista {
             System.out.println("No hay habitaciones a mostrar. ");
         }else{
             System.out.println("Listado de Habitaciones: ");
-            for (Habitacion habitacion: controlador.getHabitaciones()){
-                System.out.println(habitacion.toString());
+            Iterator<Habitacion> iteradorMostrarHabitaciones= controlador.getHabitaciones().iterator();
+            while (iteradorMostrarHabitaciones.hasNext()){
+                System.out.println(iteradorMostrarHabitaciones.next().toString());
             }
+            /*for (Habitacion habitacion: controlador.getHabitaciones()){
+                System.out.println(habitacion.toString());
+            }*/
         }
     }
 
@@ -249,10 +254,15 @@ public class Vista {
         try{
             if (huesped != null) {
                 int contador = 1;
-                for (Reserva reservasHuesped : controlador.getReserva(huesped)) {
-                    System.out.println(contador + ": " + reservasHuesped);
+                Iterator<Reserva> iteradorListarReservasHuesped= controlador.getReserva(huesped).iterator();
+                while (iteradorListarReservasHuesped.hasNext()){
+                    System.out.println(contador+": "+iteradorListarReservasHuesped.next());
                     contador++;
                 }
+                /*for (Reserva reservasHuesped : controlador.getReserva(huesped)) {
+                    System.out.println(contador + ": " + reservasHuesped);
+                    contador++;
+                }*/
             }else System.out.println("El DNI del huesped introducido no existe.");
         }catch(NullPointerException e){
             System.out.println(e.getMessage());
@@ -280,9 +290,13 @@ public class Vista {
         }*/
        try {
             if (tipoHabitacion != null) {
-                for (Reserva reservasTipoHabitacion : controlador.getReserva(tipoHabitacion)) {
-                    System.out.println(reservasTipoHabitacion);
+                Iterator<Reserva> iteradorReservaTipoHabitacion= controlador.getReserva(tipoHabitacion).iterator();
+                while (iteradorReservaTipoHabitacion.hasNext()){
+                    System.out.println(iteradorReservaTipoHabitacion.next());
                 }
+                /*for (Reserva reservasTipoHabitacion : controlador.getReserva(tipoHabitacion)) {
+                    System.out.println(reservasTipoHabitacion);
+                }*/
             }else System.out.println("El tipo de habitación introducida es nula.");
         }catch (NullPointerException e){
             System.out.println(e.getMessage());
@@ -292,10 +306,16 @@ public class Vista {
     private ArrayList<Reserva> getReservasAnulables (ArrayList<Reserva> reservasAAnular){
         LocalDate fechaAhora= LocalDate.now();
         ArrayList<Reserva> reservasAnulables= new ArrayList<>();
-        for (Reserva reserva: reservasAAnular){
+        Iterator<Reserva> iteradorReservasAnulables= reservasAAnular.iterator();
+        while (iteradorReservasAnulables.hasNext()){
+            Reserva reserva= iteradorReservasAnulables.next();
             if (reserva.getFechaInicioReserva().isAfter(fechaAhora))
                 reservasAnulables.add(reserva);
         }
+        /*for (Reserva reserva: reservasAAnular){
+            if (reserva.getFechaInicioReserva().isAfter(fechaAhora))
+                reservasAnulables.add(reserva);
+        }*/
         return reservasAnulables;
     }
 
@@ -338,10 +358,15 @@ public class Vista {
                     // ME FALTA POR A�ADIR LA CONFIRMACI�N FINAL DE BORRAR LA RESERVA QUE SE SELECCIONA.
                     do {
                         System.out.println("Listado de reservas del Huesped " + huesped.getNombre() + ":");
-                        for (Reserva reservasHuesped: getReservasAnulables(controlador.getReserva(huesped))){
-                            System.out.println(contador+ ".- "+reservasHuesped.toString());
+                        Iterator<Reserva> iteradorAnularReserva= controlador.getReserva(huesped).iterator();
+                        while (iteradorAnularReserva.hasNext()){
+                            System.out.println(contador+ ".- "+iteradorAnularReserva.next().toString());
                             contador++;
                         }
+                        /*for (Reserva reservasHuesped: getReservasAnulables(controlador.getReserva(huesped))){
+                            System.out.println(contador+ ".- "+reservasHuesped.toString());
+                            contador++;
+                        }*/
                         System.out.println("Indique qu� reserva desea anular: ");
                         opcion = Entrada.entero();
                         if (opcion<1 || opcion>getReservasAnulables(controlador.getReserva(huesped)).size())
@@ -374,9 +399,13 @@ public class Vista {
             switch (opcion) {
                 case 1:
                     System.out.println("Listado de Reservas: ");
-                    for (Reserva reserva : controlador.getReservas()) {
-                        System.out.println(reserva.toString());
+                    Iterator<Reserva> iteradorMostrarReservas= controlador.getReservas().iterator();
+                    while (iteradorMostrarReservas.hasNext()){
+                        System.out.println(iteradorMostrarReservas.next().toString());
                     }
+                    /*for (Reserva reserva : controlador.getReservas()) {
+                        System.out.println(reserva.toString());
+                    }*/
                     break;
                 case 2:
                     try{
