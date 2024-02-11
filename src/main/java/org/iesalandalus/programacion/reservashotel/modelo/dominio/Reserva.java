@@ -152,9 +152,10 @@ public class Reserva {
     }
 
     public void setPrecio() {
-        Period tiempoEstancia= Period.between(getFechaInicioReserva(),getFechaFinReserva());
-        this.precio = (getNumeroPersonas() * (habitacion.getPrecio() + getRegimen().getIncrementoPrecio()) * tiempoEstancia.getDays());
-            }
+
+            Period tiempoEstancia = Period.between(getFechaInicioReserva(), getFechaFinReserva());
+            this.precio = (getNumeroPersonas() * (habitacion.getPrecio() + getRegimen().getIncrementoPrecio()) * tiempoEstancia.getDays());
+    }
 
     public int getNumeroPersonas() {
         return numeroPersonas;
