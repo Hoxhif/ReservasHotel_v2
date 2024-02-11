@@ -184,16 +184,16 @@ Estos métodos se usaban para controlar el array.
         if (habitacion == null)
             throw new NullPointerException("ERROR: No se puede buscar una habitación nula.");
         if (get().contains(habitacion)){
-            //return get().get(get().indexOf(habitacion));
+            return get().get(get().indexOf(habitacion)); // al final lo he dejado como estaba
+
             // Aquí en vez de lo que tenía hecho he usado el Iterator.
+            /*
             Iterator<Habitacion> iteradorHabitacion= get().iterator();
             while (iteradorHabitacion.hasNext()){
                 if (habitacion.equals(iteradorHabitacion.next()))
-                    return habitacion;
-            }
+                    return habitacion;*/
+            }return null;
         }
-        return null;
-    }
 
     public void borrar (Habitacion habitacion) throws OperationNotSupportedException{
         if (habitacion == null)

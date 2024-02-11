@@ -100,11 +100,16 @@ public class Reservas {
             throw new NullPointerException("ERROR: No se pueden buscar reservas de un huesped nulo.");
 
         ArrayList<Reserva> copiaReservaHuesped= new ArrayList<>();
-
-        for (Reserva reserva: get()){
+        Iterator<Reserva> iteratorReserva= get().iterator();
+        while (iteratorReserva.hasNext()){
+            Reserva reserva= iteratorReserva.next();
             if (reserva.getHuesped().equals(huesped))
                 copiaReservaHuesped.add(reserva);
         }
+        /*for (Reserva reserva: get()){
+            if (reserva.getHuesped().equals(huesped))
+                copiaReservaHuesped.add(reserva);
+        }*/
 
         return copiaReservaHuesped;
     }
@@ -114,11 +119,16 @@ public class Reservas {
         if (tipoHabitacion == null)
             throw new NullPointerException("ERROR: No se pueden buscar reservas de un tipo de habitación nula.");
         ArrayList<Reserva> copiaReservaTipoHabitacion= new ArrayList<>();
-
-        for (Reserva reserva: get()){
+        Iterator<Reserva> iteratorReserva= get().iterator();
+        while (iteratorReserva.hasNext()){
+            Reserva reserva= iteratorReserva.next();
             if (reserva.getHabitacion().getTipoHabitacion().equals(tipoHabitacion))
                 copiaReservaTipoHabitacion.add(reserva);
         }
+        /*for (Reserva reserva: get()){
+            if (reserva.getHabitacion().getTipoHabitacion().equals(tipoHabitacion))
+                copiaReservaTipoHabitacion.add(reserva);
+        }*/
 
         return copiaReservaTipoHabitacion;
     }
@@ -131,36 +141,55 @@ public class Reservas {
             throw new NullPointerException("ERROR: No se pueden buscar reservas de una habitación nula.");
         LocalDate fechaActual = LocalDate.now();
         ArrayList<Reserva> reservasHabitacionFuturas = new ArrayList<>();
-        for (Reserva reservaFutura : get()) {
+        Iterator<Reserva> iteradorReservasFuturas= get().iterator();
+
+        while (iteradorReservasFuturas.hasNext()){
+            Reserva reservaFutura= iteradorReservasFuturas.next();
+            if (reservaFutura.getHabitacion().equals(habitacion) && reservaFutura.getFechaInicioReserva().isAfter(fechaActual))
+                reservasHabitacionFuturas.add(reservaFutura);
+        }
+        /*for (Reserva reservaFutura : get()) {
             if (reservaFutura.getHabitacion().equals(habitacion) && reservaFutura.getFechaInicioReserva().isAfter(fechaActual)) {
                 reservasHabitacionFuturas.add(reservaFutura);
             }
-        }return reservasHabitacionFuturas;
+        }*/
+        return reservasHabitacionFuturas;
     }
 
     public void realizarCheckin(Reserva reserva, LocalDateTime fecha) {
         if (reserva == null | fecha == null)
             throw new NullPointerException("Ni la reserva ni la fecha pueden ser nulas.");
-        for (Reserva reservaARealizarCheckin : coleccionReservas) {
+        Iterator<Reserva> iteradorReservaCheckin = coleccionReservas.iterator();
+        while (iteradorReservaCheckin.hasNext()){
+            Reserva reservaCheckin = iteradorReservaCheckin.next();
+            if (reservaCheckin!=null)
+                if (reservaCheckin.equals(reserva))
+                    reservaCheckin.setCheckIn(fecha);
+        }
+
+        /*for (Reserva reservaARealizarCheckin : coleccionReservas) {
             if (reservaARealizarCheckin != null) {
                 if (reservaARealizarCheckin.equals(reserva)) {
                     reservaARealizarCheckin.setCheckIn(fecha);
                 }
             }
-        }
+        }*/
     }
 
     public void realizarCheckout(Reserva reserva, LocalDateTime fecha){
         if (reserva == null | fecha == null)
             throw new NullPointerException("Ni la reserva ni la fecha pueden ser nulas.");
-        for (Reserva reservaARealizarCheckout: coleccionReservas){
+        Iterator<Reserva> iteradorReservaCheckout= coleccionReservas.iterator();
+        while (iteradorReservaCheckout.hasNext()){
+            Reserva reservaCheckout = iteradorReservaCheckout.next();
+            if (reservaCheckout!=null)
+                if (reservaCheckout.equals(reserva))
+                    reservaCheckout.setCheckOut(fecha);
+        }
+        /*for (Reserva reservaARealizarCheckout: coleccionReservas){
             if (reservaARealizarCheckout!=null){
             if (reservaARealizarCheckout.equals(reserva)){
                 reservaARealizarCheckout.setCheckOut(fecha);
-            }
+            }*/
             }
         }
-    }
-
-
-}
