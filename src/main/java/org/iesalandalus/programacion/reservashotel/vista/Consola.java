@@ -58,27 +58,8 @@ public class Consola {
             opcion = Entrada.entero();
             if (opcion<=0 || opcion>Opcion.values().length)
                 System.out.println("Opción no válida.");
-        }while (opcion<=0 || opcion>Opcion.values().length); //De esta manera si ingresa un valor mayor a el ordinal de un enum se repite el bucle.
-        switch (opcion){
-            case 1: return Opcion.SALIR;
-            case 2: return Opcion.INSERTAR_HUESPED;
-            case 3: return Opcion.BUSCAR_HUESPED;
-            case 4: return Opcion.BORRAR_HUESPED;
-            case 5: return Opcion.MOSTRAR_HUESPEDES;
-            case 6: return Opcion.INSERTAR_HABITACION;
-            case 7: return Opcion.BUSCAR_HABITACION;
-            case 8: return Opcion.BORRAR_HABITACION;
-            case 9: return Opcion.MOSTRAR_HABITACIONES;
-            case 10: return Opcion.INSERTAR_RESERVA;
-            case 11: return Opcion.ANULAR_RESERVA;
-            case 12: return Opcion.MOSTRAR_RESERVAS;
-            case 13: return(Opcion.REALIZAR_CHECKIN);
-            case 14: return (Opcion.REALIZAR_CHECKOUT);
-            case 15: return (Opcion.CONSULTAR_DISPONIBILIDAD);
-            default:return Opcion.SALIR;
-
-            // Esto lo tenemos que mejorar.
-        }
+        }while (opcion<=0 || opcion>Opcion.values().length);
+        return Opcion.values()[opcion-1];
     }
 
     public static Huesped leerHuesped(){
@@ -116,12 +97,6 @@ public class Consola {
                 if (huesped.getDni().equals(dni))
                     return huesped;
             }
-
-            /*for (Huesped huespedConDni: huespedes.get()){
-                if (huespedConDni.getDni().equals(dni)){
-                    return huespedConDni;
-                }
-            }*/
 
         }catch (NullPointerException | IllegalArgumentException e){
             System.out.println(e.getMessage());
@@ -209,20 +184,20 @@ public class Consola {
             do {
                 System.out.println("Escriba el número de la planta: ");
                 numeroPlanta = Entrada.entero();
-                if (numeroPlanta < 1 || numeroPlanta > 3)
+                if (numeroPlanta < Habitacion.MIN_NUMERO_PLANTA || numeroPlanta > Habitacion.MAX_NUMERO_PLANTA)
                     System.out.println("El numero de la planta debe ser entre 1 y 3.");
-            } while (numeroPlanta < 1 || numeroPlanta > 3);
+            } while (numeroPlanta < Habitacion.MIN_NUMERO_PLANTA || numeroPlanta > Habitacion.MAX_NUMERO_PLANTA);
             do {
                 System.out.println("Escriba el número de la puerta: ");
                 numeroPuerta = Entrada.entero();
-                if (numeroPuerta < 1 || numeroPuerta > 14)
-                    System.out.println("El numero de la puerta debe ser entre 1 y 14.");
-            } while (numeroPuerta < 1 || numeroPuerta > 14);
+                if (numeroPuerta < Habitacion.MIN_NUMERO_PUERTA || numeroPuerta > Habitacion.MAX_NUMERO_PUERTA)
+                    System.out.println("El numero de la puerta debe ser entre 0 y 14.");
+            } while (numeroPuerta < Habitacion.MIN_NUMERO_PUERTA || numeroPuerta > Habitacion.MAX_NUMERO_PUERTA);
         do {
             System.out.println("Escriba el precio de la habitación: ");
             precio = Entrada.realDoble();
-            if (precio<40 || precio>150) System.out.println("El precio de una habitación no debe ser superior a 40 o 150.");
-        }while(precio<40 || precio>150);
+            if (precio<Habitacion.MIN_PRECIO_HABITACION || precio>Habitacion.MAX_PRECIO_HABITACION) System.out.println("El precio de una habitación no debe ser superior a 40 o 150.");
+        }while(precio<Habitacion.MIN_PRECIO_HABITACION || precio>Habitacion.MAX_PRECIO_HABITACION);
         System.out.println("Indique el tipo de habitación: ");
         TipoHabitacion tipo = leerTipoHabitacion();
         try {
@@ -322,13 +297,7 @@ public class Consola {
             opcion = Entrada.entero();
             if (opcion<1 || opcion>TipoHabitacion.values().length) System.out.println("Elija una opción adecuada, por favor.");
         }while (opcion<1 || opcion>TipoHabitacion.values().length);
-        switch (opcion){
-            case 1: return TipoHabitacion.SIMPLE;
-            case 2: return TipoHabitacion.DOBLE;
-            case 3: return TipoHabitacion.TRIPLE;
-            case 4: return TipoHabitacion.SUITE;
-            default: return TipoHabitacion.SIMPLE;
-        }
+            return TipoHabitacion.values()[opcion-1];
     }
 
     public static Regimen leerRegimen(){
@@ -344,13 +313,7 @@ public class Consola {
             opcion = Entrada.entero();
             if (opcion<1 || opcion>Regimen.values().length+1) System.out.println("Elija una opción adecuada, por favor.");
         }while (opcion<1 || opcion>Regimen.values().length+1);
-        switch (opcion){
-            case 1: return Regimen.SOLO_ALOJAMIENTO;
-            case 2: return Regimen.ALOJAMIENTO_DESAYUNO;
-            case 3: return Regimen.MEDIA_PENSION;
-            case 4: return Regimen.PENSION_COMPLETA;
-            default: return Regimen.SOLO_ALOJAMIENTO;
-        }
+        return Regimen.values()[opcion-1];
     }
 
     public static Reserva leerReserva(){
