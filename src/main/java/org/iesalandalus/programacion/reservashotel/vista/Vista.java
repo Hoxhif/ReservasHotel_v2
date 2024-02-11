@@ -107,7 +107,7 @@ public class Vista {
                 controlador.insertar(nuevoHuesped);
                 System.out.println("Huesped creado satisfactoriamente");
             }else System.out.println("Error al crear el huesped. No se han introducido datos válidos.");
-        } catch (OperationNotSupportedException | NullPointerException e) {
+        } catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e) {
             System.out.println(e.getMessage());
 
         }
@@ -119,7 +119,7 @@ public class Vista {
             if (huesped!=null)
                 System.out.println(controlador.buscar(huesped));
             else System.out.println("No se a encontrado al Huesped.");
-        }catch(NullPointerException e){
+        }catch(NullPointerException | IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
         //System.out.println(Consola.getClientePorDni());
@@ -132,7 +132,7 @@ public class Vista {
                 controlador.borrar(huespedABorrar);
                 System.out.println("Huesped borrado satisfactoriamente");
             }else System.out.println("No se puede borrar un huesped que no existe.");
-        }catch (OperationNotSupportedException | NullPointerException e){
+        }catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
 
@@ -163,7 +163,7 @@ public class Vista {
                 controlador.insertar(nuevaHabitacion);
                 System.out.println("Habitaci�n creada satisfactoriamente");
             }else System.out.println("Error al crear la habitación, los datos no son los esperados.");
-        }catch (OperationNotSupportedException | NullPointerException e){
+        }catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
     }
@@ -174,7 +174,7 @@ public class Vista {
             if (habitacion != null){
                 System.out.println(controlador.buscar(habitacion));
             }else System.out.println("No se ha encontrado la habitación.");
-        }catch(NullPointerException e){
+        }catch(NullPointerException | IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
 
@@ -188,7 +188,7 @@ public class Vista {
                 controlador.borrar(habitacionABorrar);
                 System.out.println("Habitaci�n borrada satisfactoriamente");
             }else System.out.println("No se puede borrar la habitación porque no existe.");
-        }catch (OperationNotSupportedException e){
+        }catch (OperationNotSupportedException | IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
     }
@@ -229,7 +229,7 @@ public class Vista {
                 }
             }
             else System.out.println("No se puede añadir una reserva con datos nulos.");
-        }catch (OperationNotSupportedException | NullPointerException e){
+        }catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
     }
