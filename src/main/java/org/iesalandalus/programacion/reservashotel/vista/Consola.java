@@ -239,13 +239,13 @@ public class Consola {
             do {
                 System.out.println("Indique el numero de la planta: ");
                 numPlanta = Entrada.entero();
-                if (numPlanta<1 || numPlanta>3) System.out.println("El numero de la planta no puede ser superior a 3 o menor de 1.");
-            }while (numPlanta<1 || numPlanta>3);
+                if (numPlanta<Habitacion.MIN_NUMERO_PLANTA || numPlanta>Habitacion.MAX_NUMERO_PLANTA) System.out.println("El numero de la planta no puede ser superior a 3 o menor de 1.");
+            }while (numPlanta<Habitacion.MIN_NUMERO_PLANTA || numPlanta>Habitacion.MAX_NUMERO_PLANTA);
             do {
                 System.out.println("Indique el numero de la puerta: ");
                 numPuerta = Entrada.entero();
-                if (numPuerta<1 || numPuerta>14) System.out.println("El numero de puerta no puede ser menor de 1 o mayor de 14.");
-            }while (numPuerta<1 || numPuerta>14);
+                if (numPuerta<Habitacion.MIN_NUMERO_PUERTA || numPuerta>Habitacion.MAX_NUMERO_PUERTA) System.out.println("El numero de puerta no puede ser menor de 0 o mayor de 14.");
+            }while (numPuerta<Habitacion.MIN_NUMERO_PUERTA || numPuerta>Habitacion.MAX_NUMERO_PUERTA);
             combinacion = ""+numPlanta+numPuerta;
 
             Iterator<Habitacion> iteradorHabitacion= habitaciones.get().iterator();
