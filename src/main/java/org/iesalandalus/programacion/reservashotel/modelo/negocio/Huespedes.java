@@ -27,15 +27,16 @@ public class Huespedes {
         /*for (Huesped huesped: coleccionHuespedes){
             copiaHuespedes.add(huesped);
         }*/
+
         Iterator<Huesped> iteradorHuesped= coleccionHuespedes.iterator();
 
         while(iteradorHuesped.hasNext()){
-            copiaHuespedes.add(iteradorHuesped.next());
+            Huesped huesped= new Huesped(iteradorHuesped.next());
+            copiaHuespedes.add(huesped);
         }
 
         // el método sort nos ordena por defecto alfabéticamente por los nombres usando getNombre.
 
-        Collections.sort(copiaHuespedes, Comparator.comparing(Huesped::getNombre));
 
         return copiaHuespedes;
     }

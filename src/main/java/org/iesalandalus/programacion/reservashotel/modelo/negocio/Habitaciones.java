@@ -65,7 +65,8 @@ public class Habitaciones {
 
         Iterator<Habitacion> habitacionIterator= coleccionHabitaciones.iterator();
         while (habitacionIterator.hasNext()){
-            copiaHabitaciones.add(habitacionIterator.next());
+            Habitacion habitacion= new Habitacion(habitacionIterator.next());
+            copiaHabitaciones.add(habitacion);
         }
         // Había usado reversed al principio porque pensaba que iría de mas a menos, pero parece ser que no, que va de menos a mas por defecto.
         Collections.sort(copiaHabitaciones, Comparator.comparing(Habitacion::getIdentificador));
@@ -104,7 +105,7 @@ public class Habitaciones {
                 copiaHabitaciones.add(habitacion);
             }
         }*/
-        Iterator<Habitacion> iteradorHabitacion= coleccionHabitaciones.iterator();
+        Iterator<Habitacion> iteradorHabitacion= get().iterator();
 
         while(iteradorHabitacion.hasNext()){
             Habitacion comprobarHabitacion= iteradorHabitacion.next();

@@ -34,7 +34,8 @@ public class Reservas {
         Iterator<Reserva> iteradorReservas= coleccionReservas.iterator();
 
         while(iteradorReservas.hasNext()){
-            copiaReservas.add(iteradorReservas.next());
+            Reserva reserva= new Reserva(iteradorReservas.next());
+            copiaReservas.add(reserva);
         }
 
         /*Collections.sort(copiaReservas, new Comparator<Reserva>() {

@@ -143,7 +143,9 @@ public class Vista {
             System.out.println("No hay huespedes a mostrar. ");
         }else{
             System.out.println("Listado de huespedes: ");
-            Iterator<Huesped> iteradorMostrarHuesped= controlador.getHuespedes().iterator();
+            ArrayList<Huesped> listado= controlador.getHuespedes();
+            Collections.sort(listado, Comparator.comparing(Huesped::getNombre));
+            Iterator<Huesped> iteradorMostrarHuesped= listado.iterator();
             while (iteradorMostrarHuesped.hasNext()){
                 System.out.println(iteradorMostrarHuesped.next().toString());
             }
