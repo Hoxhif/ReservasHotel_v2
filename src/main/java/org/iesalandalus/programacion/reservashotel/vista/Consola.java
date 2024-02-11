@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Iterator;
 
 //import static org.iesalandalus.programacion.reservashotel.MainApp.*;
 import static org.iesalandalus.programacion.reservashotel.modelo.Modelo.*;
@@ -109,12 +110,19 @@ public class Consola {
             String dni;
             System.out.println("Inserte el DNI del huesped: ");
             dni = Entrada.cadena();
+            Iterator<Huesped> iteradorHuesped= huespedes.get().iterator();
+            while (iteradorHuesped.hasNext()){
+                Huesped huesped= iteradorHuesped.next();
+                if (huesped.getDni().equals(dni))
+                    return huesped;
+            }
 
-            for (Huesped huespedConDni: huespedes.get()){
+            /*for (Huesped huespedConDni: huespedes.get()){
                 if (huespedConDni.getDni().equals(dni)){
                     return huespedConDni;
                 }
-            }
+            }*/
+
         }catch (NullPointerException | IllegalArgumentException e){
             System.out.println(e.getMessage());
 
@@ -264,10 +272,19 @@ public class Consola {
                 if (numPuerta<1 || numPuerta>14) System.out.println("El numero de puerta no puede ser menor de 1 o mayor de 14.");
             }while (numPuerta<1 || numPuerta>14);
             combinacion = ""+numPlanta+numPuerta;
-            for (Habitacion habitacionCorrespondiente: habitaciones.get()){
+
+            Iterator<Habitacion> iteradorHabitacion= habitaciones.get().iterator();
+            while (iteradorHabitacion.hasNext()){
+                Habitacion habitacion = iteradorHabitacion.next();
+                if (habitacion.getIdentificador().equals(combinacion))
+                    return habitacion;
+            }
+
+            /*for (Habitacion habitacionCorrespondiente: habitaciones.get()){
                 if (habitacionCorrespondiente.getIdentificador().equals(combinacion))
                     return habitacionCorrespondiente;
-            }
+            }*/
+
         }catch (NullPointerException | IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
