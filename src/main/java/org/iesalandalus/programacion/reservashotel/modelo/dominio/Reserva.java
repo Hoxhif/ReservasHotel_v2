@@ -29,7 +29,7 @@ public class Reserva {
         setFechaInicioReserva(fechaInicioReserva);
         setFechaFinReserva(fechaFinReserva);
         setNumeroPersonas(numeroPersonas);
-        setPrecio();
+        precio=0;
         if (getCheckIn()!=null){
             setCheckIn(checkIn);
         }
@@ -48,7 +48,7 @@ public class Reserva {
         setFechaInicioReserva(reserva.getFechaInicioReserva());
         setFechaFinReserva(reserva.getFechaFinReserva());
         setNumeroPersonas(reserva.getNumeroPersonas());
-        setPrecio();
+        precio=0;
         if (reserva.getCheckIn()!=null)
             setCheckIn(reserva.getCheckIn());
         if (reserva.getCheckOut()!=null)
@@ -145,6 +145,7 @@ public class Reserva {
         if (checkOut.isAfter(getFechaFinReserva().atTime(MAX_HORAS_POSTERIOR_CHECKOUT, 0)))
                 throw new IllegalArgumentException("ERROR: El checkout de una reserva puede ser como máximo 12 horas después de la fecha de fin de la reserva.");
         this.checkOut = checkOut;
+        setPrecio();
     }
 
     public double getPrecio() {
