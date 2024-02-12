@@ -126,8 +126,6 @@ public class Reserva {
         return checkIn;
     }
 
-    // IMPORTANTE:
-    // Para poder realizar el checkIn y el checkOut, he tenido que jugar con valores nulos, de manera que null es un valor válido en el programa, por lo que he eliminado el NullPointerException.
 
     public void setCheckIn(LocalDateTime checkIn) {
             if (checkIn == null)

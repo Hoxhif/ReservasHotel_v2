@@ -74,7 +74,7 @@ public class Reservas {
         if (reserva == null)
             throw new NullPointerException("ERROR: No se puede buscar una reserva nula.");
         if (get().contains(reserva))
-            return reserva;
+            return new Reserva(reserva);
         else return null;
     }
 
