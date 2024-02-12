@@ -65,14 +65,18 @@ public class Consola {
     public static Huesped leerHuesped(){
         String nombre, dni, telefono, correo;
 
-        System.out.println("Escriba el nombre del Huesped: ");
-        nombre = Entrada.cadena();
-        System.out.println("Escriba el DNI del Huesped: ");
-        dni = Entrada.cadena();
-        System.out.println("Escriba el telefono del Huesped: ");
-        telefono = Entrada.cadena();
-        System.out.println("Escriba el correo del Huesped: ");
-        correo = Entrada.cadena();
+        do {
+            System.out.println("Escriba el nombre del Huesped: ");
+            nombre = Entrada.cadena();
+            System.out.println("Escriba el DNI del Huesped: ");
+            dni = Entrada.cadena();
+            System.out.println("Escriba el telefono del Huesped: ");
+            telefono = Entrada.cadena();
+            System.out.println("Escriba el correo del Huesped: ");
+            correo = Entrada.cadena();
+            if (!dni.matches("\\d{8}[A-HJ-NP-TV-Z]") || !telefono.matches("\\d{9}") || !correo.matches("[a-zA-Z0-9.]+@[a-zA-Z]+\\.[a-zA-Z]+"))
+                System.out.println("El DNI, el correo o el teléfono no ha sido válido, por favor intentelo de nuevo.");
+        }while (!dni.matches("\\d{8}[A-HJ-NP-TV-Z]") || !telefono.matches("\\d{9}") || !correo.matches("[a-zA-Z0-9.]+@[a-zA-Z]+\\.[a-zA-Z]+"));
 
         try{
             return new Huesped(nombre,dni,correo,telefono,leerFecha("Escriba su fecha de nacimiento: "));
@@ -319,11 +323,22 @@ public class Consola {
     public static Reserva leerReserva(){
 
         int numPersonas;
+        Huesped huesped;
+        Habitacion habitacion;
 
+        do {
+            huesped = getClientePorDni();
+            if (huesped==null){
+                return null;
+            }
+        }while (huesped==null);
 
-        Huesped huesped = getClientePorDni();
-
-        Habitacion habitacion = leerHabitacionPorIdentificador();
+        do {
+            habitacion = leerHabitacionPorIdentificador();
+            if (habitacion==null){
+                return null;
+            }
+        }while (habitacion==null);
 
         System.out.println("Seleccione un tipo de régimen: ");
         Regimen regimen = leerRegimen();
@@ -342,9 +357,13 @@ public class Consola {
         // Esto no hace falta porque ya insertamos la fecha cuando hacemos leerFecha en el constructor.
 
 
-        System.out.println("Indique el número de personas en la reserva: ");
-        numPersonas = Entrada.entero();
-
+            do {
+                System.out.println("Indique el número de personas en la reserva: ");
+                numPersonas = Entrada.entero();
+                if (numPersonas <= 0 || numPersonas > habitacion.getTipoHabitacion().getNumeroMaximoPersonas()) {
+                    System.out.println("No se admite esa cantidad de personas en la habitación.");
+                }
+            }while(numPersonas<=0 || numPersonas>habitacion.getTipoHabitacion().getNumeroMaximoPersonas());
 
         try {
             return new Reserva(huesped, habitacion, regimen, leerFecha("Inserte la fecha de inicio de reserva: "), leerFecha("Inserte la fecha de fin de reserva: "), numPersonas);

@@ -84,6 +84,10 @@ public class Vista {
             case CONSULTAR_DISPONIBILIDAD:
                 try {
                     Habitacion habitacion = Consola.leerHabitacionPorIdentificador();
+                    if (habitacion==null){
+                        System.out.println("La habitación no existe.");
+                        break;
+                    }
                     Habitacion comprobarHabitacion = consultarDisponibilidad(habitacion.getTipoHabitacion(), Consola.leerFecha("Inserte la fecha de posible reserva: "), Consola.leerFecha("Inserte la fecha de posible fin reserva: "));
                     if (comprobarHabitacion == null)
                         System.out.println("La habitación estará ocupada en esas fechas.");
