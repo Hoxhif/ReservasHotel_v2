@@ -191,7 +191,7 @@ Estos métodos se usaban para controlar el array.
             Iterator<Habitacion> iteradorHabitacion = get().iterator();
             while (iteradorHabitacion.hasNext()) {
                 if (habitacion.equals(iteradorHabitacion.next()))
-                    return new Habitacion(habitacion);
+                    return habitacion;
             }
 
         }return null;
