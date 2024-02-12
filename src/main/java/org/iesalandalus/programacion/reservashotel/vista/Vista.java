@@ -503,59 +503,67 @@ boolean tipoHabitacionEncontrada=false;
         Huesped huesped=Consola.getClientePorDni();
         listarReservas(huesped);
         ArrayList<Reserva> reservasHuesped= controlador.getReserva(huesped);
+        if (reservasHuesped.isEmpty()){
+            System.out.println("El huesped no tiene ninguna reserva.");
+        }else{
+            int opcion=0;
+            do{
+                System.out.println("Inserte que reserva desea realizar el checkIn: ");
+                opcion=Entrada.entero();
+                if(opcion<0 || opcion>reservasHuesped.size())
+                    System.out.println("La opci�n no es v�lida.");
 
-        int opcion=0;
-        do{
-            System.out.println("Inserte que reserva desea realizar el checkIn: ");
-            opcion=Entrada.entero();
-            if(opcion<0 || opcion>reservasHuesped.size())
-                System.out.println("La opci�n no es v�lida.");
+            }while (opcion<0 || opcion>reservasHuesped.size());
 
-        }while (opcion<0 || opcion>reservasHuesped.size());
-
-        try {
-            if (controlador.getReserva((huesped)).get(opcion-1).getCheckIn()==null){
-                controlador.realizarCheckin(controlador.getReserva(huesped).get(opcion-1), Consola.leerFechaHora("Inserte la fecha y hora de Checkin: "));
-                System.out.println("Se ha realizado el CheckIn correctamente.");
-            }else System.out.println("Ya se ha realizado el checkIn para esta reserva.");
-        }catch (NullPointerException | IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            try {
+                if (controlador.getReserva((huesped)).get(opcion-1).getCheckIn()==null){
+                    controlador.realizarCheckin(controlador.getReserva(huesped).get(opcion-1), Consola.leerFechaHora("Inserte la fecha y hora de Checkin: "));
+                    System.out.println("Se ha realizado el CheckIn correctamente.");
+                }else System.out.println("Ya se ha realizado el checkIn para esta reserva.");
+            }catch (NullPointerException | IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
         }
+
     }
 
 
     private void realizarCheckout(){
+
 
         Huesped huesped=Consola.getClientePorDni();
         listarReservas(huesped);
 
         ArrayList<Reserva> reservasHuesped= controlador.getReserva(huesped);
 
-        int opcion=0;
-        do{
-            System.out.println("Inserte que reserva desea realizar el checkout: ");
-            opcion=Entrada.entero();
-            if(opcion<0 || opcion>reservasHuesped.size())
-                System.out.println("La opci�n no es v�lida.");
+        if (reservasHuesped.isEmpty()){
+            System.out.println("El huesped no tiene reserva");
+        }else{
+            int opcion=0;
+            do{
+                System.out.println("Inserte que reserva desea realizar el checkout: ");
+                opcion=Entrada.entero();
+                if(opcion<0 || opcion>reservasHuesped.size())
+                    System.out.println("La opci�n no es v�lida.");
 
-        }while (opcion<0 || opcion>reservasHuesped.size());
-        Reserva reservaARealizarCheckout= new Reserva(controlador.getReserva(huesped).get(0)); //Aqu� ten�a que inicializar la reserva porque sino me daba errores. Es posible que tenga que cambiarlo.
-        for (int i=0; i<reservasHuesped.size();i++){
-            if (opcion-1 == i){
-                reservaARealizarCheckout= reservasHuesped.get(i);
+            }while (opcion<0 || opcion>reservasHuesped.size());
+            Reserva reservaARealizarCheckout= new Reserva(controlador.getReserva(huesped).get(0)); //Aqu� ten�a que inicializar la reserva porque sino me daba errores. Es posible que tenga que cambiarlo.
+            for (int i=0; i<reservasHuesped.size();i++){
+                if (opcion-1 == i){
+                    reservaARealizarCheckout= reservasHuesped.get(i);
+                }
+            }
+            try {
+                if (reservaARealizarCheckout.getCheckIn() != null) {
+                    if (reservaARealizarCheckout.getCheckOut() == null) {
+                        controlador.realizarCheckout(reservaARealizarCheckout, Consola.leerFechaHora("Inserte la fecha y hora de Checkout: "));
+                        System.out.println("Se ha realizado el CheckOut correctamente.");
+                    } else System.out.println("Ya se ha realizado el CheckOut para esta reserva.");
+                }else System.out.println("Antes de realizar el CheckOut se debe realizar el CheckIn.");
+                }catch(NullPointerException | IllegalArgumentException e){
+                    System.out.println(e.getMessage());
+                }
             }
         }
-    try {
-        if (reservaARealizarCheckout.getCheckOut()==null) {
-            controlador.realizarCheckout(reservaARealizarCheckout, Consola.leerFechaHora("Inserte la fecha y hora de Checkout: "));
-            System.out.println("Se ha realizado el CheckOut correctamente.");
-        }else System.out.println("Ya se ha realizado el CheckOut para esta reserva.");
-    }catch (NullPointerException | IllegalArgumentException e){
-        System.out.println(e.getMessage());
-}
+
     }
-
-
-
-
-}
