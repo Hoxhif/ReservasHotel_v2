@@ -38,18 +38,10 @@ public class Reservas {
             copiaReservas.add(reserva);
         }
 
-        /*Collections.sort(copiaReservas, new Comparator<Reserva>() {
-            @Override
-            public int compare(Reserva o1, Reserva o2) {
-                int resultado = o2.getFechaInicioReserva().compareTo(o1.getFechaInicioReserva());
-                if (resultado!=0)
-                    return resultado;
-                else return String.compare(o1.getHabitacion().getIdentificador(),o2.getHabitacion().getIdentificador());
-            }
-        });*/
 
         // He mirado como hacerlo por interner, en este enlace da una solución oara ordenar por fecha de inicio y luego por fecha reserva.https://stackoverflow.com/questions/41402963/sort-an-arraylist-with-multiple-conditions
 
+        // El problema es que lo tengo que hacer directamente en la copia profunda y no en las clases de vista.
         Comparator<Reserva> comparador= new Comparator<Reserva>() {
             @Override
             public int compare(Reserva o1, Reserva o2) {

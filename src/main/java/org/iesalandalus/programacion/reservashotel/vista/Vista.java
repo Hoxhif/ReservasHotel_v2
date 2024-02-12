@@ -18,27 +18,27 @@ public class Vista {
 
     private Controlador controlador;
 
-    public void setControlador(Controlador controlador){
+    public void setControlador(Controlador controlador) {
         if (controlador == null)
             throw new NullPointerException("ERROR: El controlador no puede ser nulo.");
-        this.controlador=controlador;
+        this.controlador = controlador;
     }
 
-    public void comenzar(){
-        Opcion opcion=Opcion.SALIR;
+    public void comenzar() {
+        Opcion opcion = Opcion.SALIR;
         do {
             Consola.mostrarMenu();
-            opcion=Consola.elegirOpcion();
+            opcion = Consola.elegirOpcion();
             ejecutarOpcion(opcion);
-        }while (opcion != Opcion.SALIR);
+        } while (opcion != Opcion.SALIR);
         terminar();
     }
 
-    public void terminar(){
+    public void terminar() {
         controlador.terminar();
     }
 
-    private void ejecutarOpcion(Opcion opcion){
+    private void ejecutarOpcion(Opcion opcion) {
         switch (opcion) {
             case SALIR:
                 break;
@@ -90,13 +90,14 @@ public class Vista {
                     else if (comprobarHabitacion != null)
                         System.out.println("La habitación está disponible en esas fechas.");
                     break;
-                }catch(NullPointerException e){
+
+                } catch (NullPointerException e) {
                     System.out.println(e.getMessage());
                 }
         }
-
-
     }
+
+
 
     private void insertarHuesped() {
         // En esta parte lo que hago es crear un nuevo objeto de tipo huesped y le doy como valor los datos que devuelven leerHuesped al llamar al metodo y despues llamo al metodo de la clase huespedes para insertarlo en el array pasando por parametro al propiop huesped creado.
@@ -237,23 +238,6 @@ public class Vista {
 
     private void listarReservas(Huesped huesped){
 
-        /*if (huesped==null)
-            throw new NullPointerException("ERROR: El huesped es nulo.");
-    Reserva [] reservasHuesped=new Reserva[CAPACIDAD];
-    int contador = 0;
-    for (Reserva reserva: reservas.get()){
-        if (reserva.getHuesped().equals(huesped))
-            reservasHuesped[contador++]=reserva;
-    }
-
-    if (contador==0)
-        System.out.println("El huesped con DNI "+ huesped.getDni()+" no tiene reservas realizadas");
-    else{
-        System.out.println("Listado de reservas del Huesped "+huesped.getNombre()+ ":");
-        for (int i = 0; i < contador; i++) {
-            System.out.println(reservasHuesped[i].toString());
-            }
-        }*/
 
         try{
             if (huesped != null) {
@@ -276,23 +260,7 @@ public class Vista {
 
 
     private void listarReservas (TipoHabitacion tipoHabitacion){
-       /* if (tipoHabitacion==null)
-            throw new NullPointerException("ERROR: El tipo de habitaci�n es nulo.");
-        Reserva [] reservasHabitacion=new Reserva[CAPACIDAD];
-        int contador = 0;
-        for (Reserva reserva: reservas.get()){
-            if (reserva.getHabitacion().getTipoHabitacion().equals(tipoHabitacion))
-                reservasHabitacion[contador++]=reserva;
-        }
 
-        if (contador==0)
-            System.out.println("El tipo de habitaci�n "+ tipoHabitacion+" no tiene reservas realizadas");
-        else{
-            System.out.println("Listado de reservas del tipo de habitaci�n "+tipoHabitacion+ ":");
-            for (int i = 0; i < contador; i++) {
-                System.out.println(reservasHabitacion[i].toString());
-            }
-        }*/
        try {
             if (tipoHabitacion != null) {
                 Iterator<Reserva> iteradorReservaTipoHabitacion= controlador.getReserva(tipoHabitacion).iterator();
@@ -428,8 +396,6 @@ public class Vista {
         }
     }
 
-    // Aqu� no supe que ten�a que hacer por que no se que tipo de m�todo es, en tanto que no se que tipo de dato devuelve.
-    // POSIBLEMENTE ESTE METODO NO ESTE BIEN IMPLEMENTADO DEL TODO.
     private int getNumElementosNoNulos(ArrayList<Reserva> reservaNoNula){
         return reservaNoNula.size();
     }
