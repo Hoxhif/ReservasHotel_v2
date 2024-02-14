@@ -34,20 +34,6 @@ public class Consola {
                 System.out.println(opcion);
         }
 
-
-       /* System.out.println(Opcion.SALIR);
-        System.out.println(Opcion.INSERTAR_HUESPED);
-        System.out.println(Opcion.BUSCAR_HUESPED);
-        System.out.println(Opcion.BORRAR_HUESPED);
-        System.out.println(Opcion.MOSTRAR_HUESPEDES);
-        System.out.println(Opcion.INSERTAR_HABITACION);
-        System.out.println(Opcion.BUSCAR_HABITACION);
-        System.out.println(Opcion.BORRAR_HABITACION);
-        System.out.println(Opcion.MOSTRAR_HABITACIONES);
-        System.out.println(Opcion.INSERTAR_RESERVA);
-        System.out.println(Opcion.ANULAR_RESERVA);
-        System.out.println(Opcion.MOSTRAR_RESERVAS);
-        System.out.println(Opcion.CONSULTAR_DISPONIBILIDAD);*/
    }
 
 
@@ -95,12 +81,13 @@ public class Consola {
             String dni;
             System.out.println("Inserte el DNI del huesped: ");
             dni = Entrada.cadena();
-            Iterator<Huesped> iteradorHuesped= huespedes.get().iterator();
+            /*Iterator<Huesped> iteradorHuesped= huespedes.get().iterator();
             while (iteradorHuesped.hasNext()){
                 Huesped huesped= iteradorHuesped.next();
                 if (huesped.getDni().equals(dni))
                     return huesped;
-            }
+            }*/
+            return new Huesped("José Antonio Guirado González", dni, "jose@gmail.com", "614276396", LocalDate.of(2001,6,18));
 
         }catch (NullPointerException | IllegalArgumentException e){
             System.out.println(e.getMessage());
@@ -342,19 +329,6 @@ public class Consola {
 
         System.out.println("Seleccione un tipo de régimen: ");
         Regimen regimen = leerRegimen();
-
-        /*do {
-            System.out.println("Inserte la fecha de inicio de reserva: ");
-            fechaInicio = Entrada.cadena();
-            if (!fechaInicio.matches("\\d{2}/\\d{2}/\\d{4}")) System.out.println("Por favor, inserte la fecha en formato correcto (dd/MM/yyy)");
-        }while(!fechaInicio.matches("\\d{2}/\\d{2}/\\d{4}"));
-        do {
-            System.out.println("Inserte la fecha de fin de reserva: ");
-            fechaFin = Entrada.cadena();
-            if (!fechaFin.matches("\\d{2}/\\d{2}/\\d{4}")) System.out.println("Por favor, inserte la fecha en formato correcto (dd/MM/yyy)");
-        }while(!fechaFin.matches("\\d{2}/\\d{2}/\\d{4}"));
-        */
-        // Esto no hace falta porque ya insertamos la fecha cuando hacemos leerFecha en el constructor.
 
 
             do {

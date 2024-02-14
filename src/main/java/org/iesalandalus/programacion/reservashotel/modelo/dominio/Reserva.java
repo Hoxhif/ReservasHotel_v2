@@ -51,12 +51,12 @@ public class Reserva {
         setFechaFinReserva(reserva.getFechaFinReserva());
         setNumeroPersonas(reserva.getNumeroPersonas());
         precio=reserva.getPrecio();
-        /*if (reserva.getCheckIn()!=null)
+        if (reserva.getCheckIn()!=null)
             setCheckIn(reserva.getCheckIn());
         if (reserva.getCheckOut()!=null)
-            setCheckOut(reserva.getCheckOut());*/
-        checkIn=reserva.getCheckIn();
-        checkOut=reserva.getCheckOut();
+            setCheckOut(reserva.getCheckOut());
+        //checkIn=reserva.getCheckIn();
+        //checkOut=reserva.getCheckOut();
     }
 
     public Huesped getHuesped() {

@@ -121,9 +121,13 @@ public class Vista {
     private void buscarHuesped(){
         try{
             Huesped huesped = Consola.getClientePorDni();
-            if (huesped!=null)
-                System.out.println(controlador.buscar(huesped));
-            else System.out.println("No se a encontrado al Huesped.");
+            Iterator<Huesped> iteradorHuesped = controlador.getHuespedes().iterator();
+            while (iteradorHuesped.hasNext()){
+                Huesped huespedIterado= iteradorHuesped.next();
+                if (huespedIterado.getDni().equals(huesped.getDni())){
+                    System.out.println(controlador.buscar(huesped));
+                }else System.out.println("No se a encontrado al Huesped.");
+            }
         }catch(NullPointerException | IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
@@ -133,14 +137,17 @@ public class Vista {
     private void borrarHuesped(){
         try {
             Huesped huespedABorrar = Consola.getClientePorDni();
-            if (huespedABorrar!=null) {
-                controlador.borrar(huespedABorrar);
-                System.out.println("Huesped borrado satisfactoriamente");
-            }else System.out.println("No se puede borrar un huesped que no existe.");
+            Iterator<Huesped> iteradorHuesped= controlador.getHuespedes().iterator();
+            while (iteradorHuesped.hasNext()){
+                Huesped huespedIterado= iteradorHuesped.next();
+                if (huespedIterado.getDni().equals(huespedABorrar.getDni())) {
+                    controlador.borrar(huespedABorrar);
+                    System.out.println("Huesped borrado satisfactoriamente");
+                }else System.out.println("No se puede borrar un huesped que no existe.");
+                }
         }catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
-
     }
 
     private void mostrarHuespedes(){
