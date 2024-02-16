@@ -87,7 +87,7 @@ public class Consola {
                 if (huesped.getDni().equals(dni))
                     return huesped;
             }*/
-            return new Huesped("José Antonio Guirado González", dni, "jose@gmail.com", "614276396", LocalDate.of(2001,6,18));
+            return new Huesped("tertererer", dni, "geerer@gmail.com", "543123243", LocalDate.of(2000,1,1));
 
         }catch (NullPointerException | IllegalArgumentException e){
             System.out.println("-"+e.getMessage());
