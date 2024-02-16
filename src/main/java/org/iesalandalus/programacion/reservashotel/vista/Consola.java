@@ -51,7 +51,7 @@ public class Consola {
     public static Huesped leerHuesped(){
         String nombre, dni, telefono, correo;
 
-        do {
+        //do {
             System.out.println("Escriba el nombre del Huesped: ");
             nombre = Entrada.cadena();
             System.out.println("Escriba el DNI del Huesped: ");
@@ -60,9 +60,9 @@ public class Consola {
             telefono = Entrada.cadena();
             System.out.println("Escriba el correo del Huesped: ");
             correo = Entrada.cadena();
-            if (!dni.matches("\\d{8}[A-HJ-NP-TV-Z]") || !telefono.matches("\\d{9}") || !correo.matches("[a-zA-Z0-9.]+@[a-zA-Z]+\\.[a-zA-Z]+"))
-                System.out.println("El DNI, el correo o el teléfono no ha sido válido, por favor intentelo de nuevo.");
-        }while (!dni.matches("\\d{8}[A-HJ-NP-TV-Z]") || !telefono.matches("\\d{9}") || !correo.matches("[a-zA-Z0-9.]+@[a-zA-Z]+\\.[a-zA-Z]+"));
+            //if (!dni.matches("\\d{8}[A-HJ-NP-TV-Z]") || !telefono.matches("\\d{9}") || !correo.matches("[a-zA-Z0-9.]+@[a-zA-Z]+\\.[a-zA-Z]+"))
+                //System.out.println("El DNI, el correo o el teléfono no ha sido válido, por favor intentelo de nuevo.");
+        //}while (!dni.matches("\\d{8}[A-HJ-NP-TV-Z]") || !telefono.matches("\\d{9}") || !correo.matches("[a-zA-Z0-9.]+@[a-zA-Z]+\\.[a-zA-Z]+"));
 
         try{
             return new Huesped(nombre,dni,correo,telefono,leerFecha("Escriba su fecha de nacimiento: "));
@@ -172,23 +172,23 @@ public class Consola {
         int numeroPlanta, numeroPuerta;
         double precio;
     // Esto lo hago porque con las expceciones el programa se me apaga por completo y tengo que reiniciar el programa cada vez que hago un fallo, por lo que para ahorrarme eso tengo que hacer comprobaciones con el Do While.
-            do {
+            //do {
                 System.out.println("Escriba el número de la planta: ");
                 numeroPlanta = Entrada.entero();
-                if (numeroPlanta < Habitacion.MIN_NUMERO_PLANTA || numeroPlanta > Habitacion.MAX_NUMERO_PLANTA)
-                    System.out.println("El numero de la planta debe ser entre 1 y 3.");
-            } while (numeroPlanta < Habitacion.MIN_NUMERO_PLANTA || numeroPlanta > Habitacion.MAX_NUMERO_PLANTA);
-            do {
+                //if (numeroPlanta < Habitacion.MIN_NUMERO_PLANTA || numeroPlanta > Habitacion.MAX_NUMERO_PLANTA)
+                    //System.out.println("El numero de la planta debe ser entre 1 y 3.");
+            //} while (numeroPlanta < Habitacion.MIN_NUMERO_PLANTA || numeroPlanta > Habitacion.MAX_NUMERO_PLANTA);
+            //do {
                 System.out.println("Escriba el número de la puerta: ");
                 numeroPuerta = Entrada.entero();
-                if (numeroPuerta < Habitacion.MIN_NUMERO_PUERTA || numeroPuerta > Habitacion.MAX_NUMERO_PUERTA)
-                    System.out.println("El numero de la puerta debe ser entre 0 y 14.");
-            } while (numeroPuerta < Habitacion.MIN_NUMERO_PUERTA || numeroPuerta > Habitacion.MAX_NUMERO_PUERTA);
-        do {
+              //  if (numeroPuerta < Habitacion.MIN_NUMERO_PUERTA || numeroPuerta > Habitacion.MAX_NUMERO_PUERTA)
+                //    System.out.println("El numero de la puerta debe ser entre 0 y 14.");
+            //} while (numeroPuerta < Habitacion.MIN_NUMERO_PUERTA || numeroPuerta > Habitacion.MAX_NUMERO_PUERTA);
+        //do {
             System.out.println("Escriba el precio de la habitación: ");
             precio = Entrada.realDoble();
-            if (precio<Habitacion.MIN_PRECIO_HABITACION || precio>Habitacion.MAX_PRECIO_HABITACION) System.out.println("El precio de una habitación no debe ser superior a 40 o 150.");
-        }while(precio<Habitacion.MIN_PRECIO_HABITACION || precio>Habitacion.MAX_PRECIO_HABITACION);
+          //  if (precio<Habitacion.MIN_PRECIO_HABITACION || precio>Habitacion.MAX_PRECIO_HABITACION) System.out.println("El precio de una habitación no debe ser superior a 40 o 150.");
+        //}while(precio<Habitacion.MIN_PRECIO_HABITACION || precio>Habitacion.MAX_PRECIO_HABITACION);
         System.out.println("Indique el tipo de habitación: ");
         TipoHabitacion tipo = leerTipoHabitacion();
         try {
@@ -300,16 +300,10 @@ public class Consola {
 
         do {
             huesped = getClientePorDni();
-            if (huesped==null){
-                return null;
-            }
         }while (huesped==null);
 
         do {
             habitacion = leerHabitacionPorIdentificador();
-            if (habitacion==null){
-                return null;
-            }
         }while (habitacion==null);
 
         System.out.println("Seleccione un tipo de régimen: ");
