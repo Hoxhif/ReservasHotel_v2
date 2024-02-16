@@ -26,9 +26,13 @@ public class MainApp {
 
     public static void main(String[] args) {
         //Inicio del programa.
-           Modelo modelo= new Modelo();
-           Vista vista=new Vista();
-           Controlador controlador= new Controlador(modelo, vista);
-           controlador.comenzar();
+        try {
+            Modelo modelo = new Modelo();
+            Vista vista = new Vista();
+            Controlador controlador = new Controlador(modelo, vista);
+            controlador.comenzar();
+        }catch (NullPointerException | IllegalArgumentException e){
+            System.out.println("-"+e.getMessage());
+        }
     }
 }

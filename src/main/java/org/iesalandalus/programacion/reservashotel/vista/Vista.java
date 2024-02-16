@@ -96,7 +96,7 @@ public class Vista {
                     break;
 
                 } catch (NullPointerException e) {
-                    System.out.println(e.getMessage());
+                    System.out.println("-"+e.getMessage());
                 }
         }
     }
@@ -113,7 +113,7 @@ public class Vista {
                 System.out.println("Huesped creado satisfactoriamente");
             }else System.out.println("Error al crear el huesped. No se han introducido datos válidos.");
         } catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            System.out.println("-"+e.getMessage());
 
         }
     }
@@ -130,7 +130,7 @@ public class Vista {
                 }else System.out.println("No se a encontrado al Huesped.");
             }
         }catch(NullPointerException | IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            System.out.println("-"+e.getMessage());
         }
         //System.out.println(Consola.getClientePorDni());
     }
@@ -147,7 +147,7 @@ public class Vista {
                 }else System.out.println("No se puede borrar un huesped que no existe.");
                 }
         }catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            System.out.println("-"+e.getMessage());
         }
     }
 
@@ -177,7 +177,7 @@ public class Vista {
                 System.out.println("Habitaci�n creada satisfactoriamente");
             }else System.out.println("Error al crear la habitación, los datos no son los esperados.");
         }catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            System.out.println("-"+e.getMessage());
         }
     }
 
@@ -196,7 +196,7 @@ public class Vista {
                 }
             }else System.out.println("No se ha encontrado la habitación.");
         }catch(NullPointerException | IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            System.out.println("-"+e.getMessage());
         }
 
         //System.out.println(Consola.leerHabitacionPorIdentificador());
@@ -216,7 +216,7 @@ public class Vista {
                 System.out.println("Habitaci�n borrada satisfactoriamente");
             }else System.out.println("No se puede borrar la habitación porque no existe.");
         }catch (OperationNotSupportedException | IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            System.out.println("-"+e.getMessage());
         }
     }
 
@@ -257,7 +257,7 @@ public class Vista {
             }
             else System.out.println("No se puede añadir una reserva con datos nulos.");
         }catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            System.out.println("-"+e.getMessage());
         }
     }
 
@@ -280,7 +280,7 @@ public class Vista {
                 }*/
             }else System.out.println("El DNI del huesped introducido no existe.");
         }catch(NullPointerException e){
-            System.out.println(e.getMessage());
+            System.out.println("-"+e.getMessage());
         }
     }
 
@@ -298,7 +298,7 @@ public class Vista {
                 }*/
             }else System.out.println("El tipo de habitación introducida es nula.");
         }catch (NullPointerException e){
-            System.out.println(e.getMessage());
+            System.out.println("-"+e.getMessage());
         }
     }
 
@@ -345,7 +345,7 @@ public class Vista {
                                 System.out.println("La reserva se ha borrado satisfactoriamente.");
                                 break;
                             }catch (OperationNotSupportedException e){
-                                System.out.println(e.getMessage());
+                                System.out.println("-"+e.getMessage());
                             }
                         case 2:
                             System.out.println("Operaci�n abortada");
@@ -375,7 +375,7 @@ public class Vista {
                         controlador.borrar(controlador.getReserva(huesped).get(opcion-1));
                         System.out.println("La reserva se ha borrado satisfactoriamente.");
                     }catch(OperationNotSupportedException e){
-                        System.out.println(e.getMessage());
+                        System.out.println("-"+e.getMessage());
                     }
                 }
 
@@ -409,14 +409,14 @@ public class Vista {
                 case 2:
                     try{
                         listarReservas(Consola.getClientePorDni());}catch (NullPointerException e){
-                        System.out.println(e.getMessage());
+                        System.out.println("-"+e.getMessage());
                     }
                     break;
                 case 3:
                     try {
                         listarReservas(Consola.leerTipoHabitacion());
                     }catch (NullPointerException e){
-                        System.out.println(e.getMessage());
+                        System.out.println("-"+e.getMessage());
                     }
             }
         }
@@ -522,6 +522,7 @@ boolean tipoHabitacionEncontrada=false;
     }
 
     private void realizarCheckin(){
+        try {
         Huesped huesped=Consola.getClientePorDni();
         listarReservas(huesped);
         ArrayList<Reserva> reservasHuesped= controlador.getReserva(huesped);
@@ -537,22 +538,21 @@ boolean tipoHabitacionEncontrada=false;
 
             }while (opcion<0 || opcion>reservasHuesped.size());
 
-            try {
+
                 if (controlador.getReserva((huesped)).get(opcion-1).getCheckIn()==null){
                     controlador.realizarCheckin(controlador.getReserva(huesped).get(opcion-1), Consola.leerFechaHora("Inserte la fecha y hora de Checkin: "));
                     System.out.println("Se ha realizado el CheckIn correctamente.");
                 }else System.out.println("Ya se ha realizado el checkIn para esta reserva.");
-            }catch (NullPointerException | IllegalArgumentException e){
-                System.out.println(e.getMessage());
+            }}catch (NullPointerException | IllegalArgumentException e){
+                System.out.println("-"+e.getMessage());
             }
         }
 
-    }
 
 
     private void realizarCheckout(){
 
-
+        try {
         Huesped huesped=Consola.getClientePorDni();
         listarReservas(huesped);
 
@@ -575,17 +575,16 @@ boolean tipoHabitacionEncontrada=false;
                     reservaARealizarCheckout= reservasHuesped.get(i);
                 }
             }
-            try {
+
                 if (reservaARealizarCheckout.getCheckIn() != null) {
                     if (reservaARealizarCheckout.getCheckOut() == null) {
                         controlador.realizarCheckout(reservaARealizarCheckout, Consola.leerFechaHora("Inserte la fecha y hora de Checkout: "));
                         System.out.println("Se ha realizado el CheckOut correctamente.");
                     } else System.out.println("Ya se ha realizado el CheckOut para esta reserva.");
                 }else System.out.println("Antes de realizar el CheckOut se debe realizar el CheckIn.");
-                }catch(NullPointerException | IllegalArgumentException e){
-                    System.out.println(e.getMessage());
+                }}catch(NullPointerException | IllegalArgumentException e){
+                    System.out.println("-"+e.getMessage());
                 }
             }
         }
 
-    }

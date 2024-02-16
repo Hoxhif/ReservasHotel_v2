@@ -67,7 +67,7 @@ public class Consola {
         try{
             return new Huesped(nombre,dni,correo,telefono,leerFecha("Escriba su fecha de nacimiento: "));
         }catch (NullPointerException | IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            System.out.println("-"+e.getMessage());
             return null;
         }
     }
@@ -90,7 +90,7 @@ public class Consola {
             return new Huesped("José Antonio Guirado González", dni, "jose@gmail.com", "614276396", LocalDate.of(2001,6,18));
 
         }catch (NullPointerException | IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            System.out.println("-"+e.getMessage());
 
         }return null;
 
@@ -194,7 +194,7 @@ public class Consola {
         try {
             return new Habitacion(numeroPlanta, numeroPuerta, precio, tipo);
         }catch (NullPointerException | IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            System.out.println("-"+e.getMessage());
             return null;
         }
         /*
@@ -252,7 +252,7 @@ public class Consola {
             }*/
 
         }catch (NullPointerException | IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            System.out.println("-"+e.getMessage());
         }
         return null;
 
@@ -327,7 +327,7 @@ public class Consola {
         try {
             return new Reserva(huesped, habitacion, regimen, leerFecha("Inserte la fecha de inicio de reserva: "), leerFecha("Inserte la fecha de fin de reserva: "), numPersonas);
         }catch(NullPointerException | IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            System.out.println("-"+e.getMessage());
             return null;
         }
 
