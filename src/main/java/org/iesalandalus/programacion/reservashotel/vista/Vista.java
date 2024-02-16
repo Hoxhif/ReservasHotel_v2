@@ -122,6 +122,7 @@ public class Vista {
         try{
             Huesped huesped = Consola.getClientePorDni();
             Iterator<Huesped> iteradorHuesped = controlador.getHuespedes().iterator();
+            if (controlador.getHuespedes().isEmpty()) System.out.println("No hay huespedes registrados.");
             while (iteradorHuesped.hasNext()){
                 Huesped huespedIterado= iteradorHuesped.next();
                 if (huespedIterado.getDni().equals(huesped.getDni())){
@@ -184,7 +185,15 @@ public class Vista {
         try{
             Habitacion habitacion = Consola.leerHabitacionPorIdentificador();
             if (habitacion != null){
-                System.out.println(controlador.buscar(habitacion));
+                /*System.out.println(controlador.buscar(habitacion));*/
+                if (controlador.getHabitaciones().isEmpty()) System.out.println("No hay habitaciones que mostrar.");
+                Iterator<Habitacion> iteradorHabitacion = controlador.getHabitaciones().iterator();
+                while (iteradorHabitacion.hasNext()){
+                    Habitacion habitacionIterada = iteradorHabitacion.next();
+                    if (habitacionIterada.getIdentificador().equals(habitacion.getIdentificador())){
+                        System.out.println(controlador.buscar(habitacion));
+                    }
+                }
             }else System.out.println("No se ha encontrado la habitación.");
         }catch(NullPointerException | IllegalArgumentException e){
             System.out.println(e.getMessage());
@@ -197,7 +206,13 @@ public class Vista {
         try{
             Habitacion habitacionABorrar = Consola.leerHabitacionPorIdentificador();
             if (habitacionABorrar != null) {
-                controlador.borrar(habitacionABorrar);
+                Iterator<Habitacion> iteradorHabitacion = controlador.getHabitaciones().iterator();
+                while (iteradorHabitacion.hasNext()){
+                    Habitacion habitacion = iteradorHabitacion.next();
+                    if (habitacion.getIdentificador().equals(habitacionABorrar.getIdentificador())){
+                        controlador.borrar(habitacion);
+                    }
+                }
                 System.out.println("Habitaci�n borrada satisfactoriamente");
             }else System.out.println("No se puede borrar la habitación porque no existe.");
         }catch (OperationNotSupportedException | IllegalArgumentException e){

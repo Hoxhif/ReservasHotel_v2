@@ -226,7 +226,7 @@ public class Consola {
 
         try{
             int numPlanta, numPuerta;
-            String combinacion;
+            //String combinacion;
             do {
                 System.out.println("Indique el numero de la planta: ");
                 numPlanta = Entrada.entero();
@@ -237,14 +237,14 @@ public class Consola {
                 numPuerta = Entrada.entero();
                 if (numPuerta<Habitacion.MIN_NUMERO_PUERTA || numPuerta>Habitacion.MAX_NUMERO_PUERTA) System.out.println("El numero de puerta no puede ser menor de 0 o mayor de 14.");
             }while (numPuerta<Habitacion.MIN_NUMERO_PUERTA || numPuerta>Habitacion.MAX_NUMERO_PUERTA);
-            combinacion = ""+numPlanta+numPuerta;
+            //combinacion = ""+numPlanta+numPuerta;
 
-            Iterator<Habitacion> iteradorHabitacion= habitaciones.get().iterator();
+            /*Iterator<Habitacion> iteradorHabitacion= habitaciones.get().iterator();
             while (iteradorHabitacion.hasNext()){
                 Habitacion habitacion = iteradorHabitacion.next();
-                if (habitacion.getIdentificador().equals(combinacion))
-                    return habitacion;
-            }
+                if (habitacion.getIdentificador().equals(combinacion))*/
+
+                    return new Habitacion(numPlanta,numPuerta,140,TipoHabitacion.SIMPLE);
 
             /*for (Habitacion habitacionCorrespondiente: habitaciones.get()){
                 if (habitacionCorrespondiente.getIdentificador().equals(combinacion))
@@ -255,21 +255,6 @@ public class Consola {
             System.out.println(e.getMessage());
         }
         return null;
-
-        // En este método entendí un poco lo mísmo que en el método del Dni, por lo que hice lo mismo.
-        /*int planta, puerta;
-        System.out.println("Inserte la planta de la habitación: ");
-        planta = Entrada.entero();
-        System.out.println("Inserte la puerta de la habitación: ");
-        puerta = Entrada.entero();
-
-        // método sujeto a cambios ...
-
-        try{
-            return new Habitacion(planta,puerta,50,TipoHabitacion.SIMPLE);
-        }catch (NullPointerException | IllegalArgumentException e){
-            System.out.println(e.getMessage());
-        }return null;*/
 
     }
 
